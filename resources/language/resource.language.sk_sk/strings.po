@@ -1,0 +1,241 @@
+# Kodi Media Center language file
+# Addon Name: STVR archív (neoficiálny)
+# Addon id: plugin.video.stvr
+# Addon Provider: tvadovic
+# Vygenerované z dev/gen_strings.py – needitovať ručne.
+msgid ""
+msgstr ""
+"Project-Id-Version: plugin.video.stvr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sk_SK\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+msgctxt "#30000"
+msgid "Genres"
+msgstr "Žánre"
+
+msgctxt "#30001"
+msgid "A–Z"
+msgstr "A–Z"
+
+msgctxt "#30002"
+msgid "Channels"
+msgstr "Kanály"
+
+msgctxt "#30003"
+msgid "Calendar"
+msgstr "Kalendár"
+
+msgctxt "#30004"
+msgid "Search"
+msgstr "Hľadať"
+
+msgctxt "#30005"
+msgid "Watch later"
+msgstr "Pozrieť neskôr"
+
+msgctxt "#30006"
+msgid "For kids"
+msgstr "Pre deti"
+
+msgctxt "#30007"
+msgid "European works"
+msgstr "Európska tvorba"
+
+msgctxt "#30010"
+msgid "Subgenres…"
+msgstr "Podžánre…"
+
+msgctxt "#30012"
+msgid "Next page…"
+msgstr "Ďalšia strana…"
+
+msgctxt "#30013"
+msgid "Older…"
+msgstr "Staršie…"
+
+msgctxt "#30014"
+msgid "Previous month (%s)"
+msgstr "Predchádzajúci mesiac (%s)"
+
+msgctxt "#30015"
+msgid "New search…"
+msgstr "Nové hľadanie…"
+
+msgctxt "#30016"
+msgid "Search term (at least 3 characters)"
+msgstr "Hľadaný výraz (aspoň 3 znaky)"
+
+msgctxt "#30017"
+msgid "Remove from history"
+msgstr "Odstrániť z histórie"
+
+msgctxt "#30018"
+msgid "Clear search history"
+msgstr "Vymazať históriu hľadania"
+
+msgctxt "#30019"
+msgid "Add to Watch later"
+msgstr "Pridať do Pozrieť neskôr"
+
+msgctxt "#30020"
+msgid "Remove from Watch later"
+msgstr "Odobrať z Pozrieť neskôr"
+
+msgctxt "#30021"
+msgid "Added to Watch later"
+msgstr "Pridané do Pozrieť neskôr"
+
+msgctxt "#30022"
+msgid "Removed from Watch later"
+msgstr "Odobrané z Pozrieť neskôr"
+
+msgctxt "#30023"
+msgid "The list is empty"
+msgstr "Zoznam je prázdny"
+
+msgctxt "#30024"
+msgid "Nothing found"
+msgstr "Nič sa nenašlo"
+
+msgctxt "#30025"
+msgid "Go to show"
+msgstr "Otvoriť reláciu"
+
+msgctxt "#30027"
+msgid "Available until %s"
+msgstr "Dostupné do %s"
+
+msgctxt "#30030"
+msgid "Could not load data from STVR"
+msgstr "Nepodarilo sa načítať údaje zo STVR"
+
+msgctxt "#30031"
+msgid "This video is not available. It may be available only in Slovakia or its licence has expired."
+msgstr "Video nie je dostupné. Možno je dostupné len na Slovensku alebo mu vypršala licencia."
+
+msgctxt "#30032"
+msgid "STVR content is only available from Slovakia (geo-blocking)."
+msgstr "Obsah STVR je dostupný len zo Slovenska (geoblokácia)."
+
+msgctxt "#30033"
+msgid "Cache cleared"
+msgstr "Medzipamäť vymazaná"
+
+msgctxt "#30034"
+msgid "Enter at least 3 characters"
+msgstr "Zadajte aspoň 3 znaky"
+
+msgctxt "#30100"
+msgid "Playback"
+msgstr "Prehrávanie"
+
+msgctxt "#30101"
+msgid "Use InputStream Adaptive"
+msgstr "Použiť InputStream Adaptive"
+
+msgctxt "#30102"
+msgid "Play through the InputStream Adaptive add-on (adaptive quality). It must be installed."
+msgstr "Prehrávať cez doplnok InputStream Adaptive (adaptívna kvalita). Musí byť nainštalovaný."
+
+msgctxt "#30103"
+msgid "Stream format"
+msgstr "Formát streamu"
+
+msgctxt "#30104"
+msgid "HLS"
+msgstr "HLS"
+
+msgctxt "#30105"
+msgid "DASH"
+msgstr "DASH"
+
+msgctxt "#30106"
+msgid "Maximum quality"
+msgstr "Maximálna kvalita"
+
+msgctxt "#30107"
+msgid "Best available"
+msgstr "Najlepšia dostupná"
+
+msgctxt "#30108"
+msgid "1080p"
+msgstr "1080p"
+
+msgctxt "#30109"
+msgid "720p"
+msgstr "720p"
+
+msgctxt "#30110"
+msgid "480p"
+msgstr "480p"
+
+msgctxt "#30111"
+msgid "360p"
+msgstr "360p"
+
+msgctxt "#30112"
+msgid "Load subtitles"
+msgstr "Načítať titulky"
+
+msgctxt "#30113"
+msgid "Applies to HLS playback without InputStream Adaptive."
+msgstr "Platí pre prehrávanie HLS bez InputStream Adaptive."
+
+msgctxt "#30114"
+msgid "InputStream Adaptive"
+msgstr "InputStream Adaptive"
+
+msgctxt "#30120"
+msgid "General"
+msgstr "Všeobecné"
+
+msgctxt "#30121"
+msgid "Episodes per page"
+msgstr "Počet epizód na stranu"
+
+msgctxt "#30122"
+msgid "Show episode durations"
+msgstr "Zobrazovať dĺžku epizód"
+
+msgctxt "#30123"
+msgid "List cache lifetime (minutes)"
+msgstr "Platnosť medzipamäte zoznamov (minúty)"
+
+msgctxt "#30124"
+msgid "Clear cache"
+msgstr "Vymazať medzipamäť"
+
+msgctxt "#30125"
+msgid "Needs one extra request per episode (cached afterwards), lists load a bit slower."
+msgstr "Pre každú epizódu je potrebná jedna požiadavka navyše (potom sa pamätá), zoznamy sa načítajú pomalšie."
+
+msgctxt "#30200"
+msgid "Mon"
+msgstr "Po"
+
+msgctxt "#30201"
+msgid "Tue"
+msgstr "Ut"
+
+msgctxt "#30202"
+msgid "Wed"
+msgstr "St"
+
+msgctxt "#30203"
+msgid "Thu"
+msgstr "Št"
+
+msgctxt "#30204"
+msgid "Fri"
+msgstr "Pi"
+
+msgctxt "#30205"
+msgid "Sat"
+msgstr "So"
+
+msgctxt "#30206"
+msgid "Sun"
+msgstr "Ne"

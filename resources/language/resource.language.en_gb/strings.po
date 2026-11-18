@@ -1,0 +1,241 @@
+# Kodi Media Center language file
+# Addon Name: STVR archív (neoficiálny)
+# Addon id: plugin.video.stvr
+# Addon Provider: tvadovic
+# Vygenerované z dev/gen_strings.py – needitovať ručne.
+msgid ""
+msgstr ""
+"Project-Id-Version: plugin.video.stvr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30000"
+msgid "Genres"
+msgstr ""
+
+msgctxt "#30001"
+msgid "A–Z"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Channels"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Calendar"
+msgstr ""
+
+msgctxt "#30004"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30005"
+msgid "Watch later"
+msgstr ""
+
+msgctxt "#30006"
+msgid "For kids"
+msgstr ""
+
+msgctxt "#30007"
+msgid "European works"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Subgenres…"
+msgstr ""
+
+msgctxt "#30012"
+msgid "Next page…"
+msgstr ""
+
+msgctxt "#30013"
+msgid "Older…"
+msgstr ""
+
+msgctxt "#30014"
+msgid "Previous month (%s)"
+msgstr ""
+
+msgctxt "#30015"
+msgid "New search…"
+msgstr ""
+
+msgctxt "#30016"
+msgid "Search term (at least 3 characters)"
+msgstr ""
+
+msgctxt "#30017"
+msgid "Remove from history"
+msgstr ""
+
+msgctxt "#30018"
+msgid "Clear search history"
+msgstr ""
+
+msgctxt "#30019"
+msgid "Add to Watch later"
+msgstr ""
+
+msgctxt "#30020"
+msgid "Remove from Watch later"
+msgstr ""
+
+msgctxt "#30021"
+msgid "Added to Watch later"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Removed from Watch later"
+msgstr ""
+
+msgctxt "#30023"
+msgid "The list is empty"
+msgstr ""
+
+msgctxt "#30024"
+msgid "Nothing found"
+msgstr ""
+
+msgctxt "#30025"
+msgid "Go to show"
+msgstr ""
+
+msgctxt "#30027"
+msgid "Available until %s"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Could not load data from STVR"
+msgstr ""
+
+msgctxt "#30031"
+msgid "This video is not available. It may be available only in Slovakia or its licence has expired."
+msgstr ""
+
+msgctxt "#30032"
+msgid "STVR content is only available from Slovakia (geo-blocking)."
+msgstr ""
+
+msgctxt "#30033"
+msgid "Cache cleared"
+msgstr ""
+
+msgctxt "#30034"
+msgid "Enter at least 3 characters"
+msgstr ""
+
+msgctxt "#30100"
+msgid "Playback"
+msgstr ""
+
+msgctxt "#30101"
+msgid "Use InputStream Adaptive"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Play through the InputStream Adaptive add-on (adaptive quality). It must be installed."
+msgstr ""
+
+msgctxt "#30103"
+msgid "Stream format"
+msgstr ""
+
+msgctxt "#30104"
+msgid "HLS"
+msgstr ""
+
+msgctxt "#30105"
+msgid "DASH"
+msgstr ""
+
+msgctxt "#30106"
+msgid "Maximum quality"
+msgstr ""
+
+msgctxt "#30107"
+msgid "Best available"
+msgstr ""
+
+msgctxt "#30108"
+msgid "1080p"
+msgstr ""
+
+msgctxt "#30109"
+msgid "720p"
+msgstr ""
+
+msgctxt "#30110"
+msgid "480p"
+msgstr ""
+
+msgctxt "#30111"
+msgid "360p"
+msgstr ""
+
+msgctxt "#30112"
+msgid "Load subtitles"
+msgstr ""
+
+msgctxt "#30113"
+msgid "Applies to HLS playback without InputStream Adaptive."
+msgstr ""
+
+msgctxt "#30114"
+msgid "InputStream Adaptive"
+msgstr ""
+
+msgctxt "#30120"
+msgid "General"
+msgstr ""
+
+msgctxt "#30121"
+msgid "Episodes per page"
+msgstr ""
+
+msgctxt "#30122"
+msgid "Show episode durations"
+msgstr ""
+
+msgctxt "#30123"
+msgid "List cache lifetime (minutes)"
+msgstr ""
+
+msgctxt "#30124"
+msgid "Clear cache"
+msgstr ""
+
+msgctxt "#30125"
+msgid "Needs one extra request per episode (cached afterwards), lists load a bit slower."
+msgstr ""
+
+msgctxt "#30200"
+msgid "Mon"
+msgstr ""
+
+msgctxt "#30201"
+msgid "Tue"
+msgstr ""
+
+msgctxt "#30202"
+msgid "Wed"
+msgstr ""
+
+msgctxt "#30203"
+msgid "Thu"
+msgstr ""
+
+msgctxt "#30204"
+msgid "Fri"
+msgstr ""
+
+msgctxt "#30205"
+msgid "Sat"
+msgstr ""
+
+msgctxt "#30206"
+msgid "Sun"
+msgstr ""

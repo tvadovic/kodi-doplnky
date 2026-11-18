@@ -104,6 +104,8 @@ zavolá koreň s filtrom (zistí, v ktorých žánroch niečo je) a potom ponúk
 ktoré sa otvoria ako `chunk?{base žánru}&{filter}&page=N`.
 
 ### Kalendár
+Pozri aj epizódy podľa dňa v časti 2.
+
 `GET /json/tv/archiv?calendar=Y&d={YYYY-MM}[&t=…][&node=…][&ch=…&letter=…&content=…]`
 
 ```json
@@ -135,6 +137,12 @@ Samotný deň sa potom otvorí ako filter `date=YYYY-MM-DD`.
 **showId vs. series:** `series` je produkčná séria (sezóna). Jedna relácia ich má viac
 (Duel 14126 → 19831, 18761, 22042, 22948, 21052, 17055…). Aj `s={series}` funguje, ale vráti len
 tú jednu sériu (22948 → 153 epizód). Doplnok preto vždy používa showId.
+
+**Epizódy jedného dňa (všetky relácie):** `d=YYYY-MM-DD` bez `s`
+(napr. 17. 11. 2026 → 48 epizód; `o=asc` = chronologicky). Doplnok to používa v Kalendári.
+Položky nemajú showId, len `series`; „ďalšie epizódy“ sa preto otvárajú cez `s={series}`.
+
+Pole `license` (`"2026-12-01 23:59:59"` alebo prázdne) je dátum, dokedy je epizóda v archíve.
 
 Zoznam epizód **neobsahuje dĺžku**. Tá je len v detaile (`archive5f.json`, pole `length`).
 
