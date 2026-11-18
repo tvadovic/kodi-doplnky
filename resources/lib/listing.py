@@ -25,6 +25,11 @@ def format_date(iso_date, weekday=False):
     return text
 
 
+def _set_art(li, art):
+    """setArt bez prázdnych hodnôt (Kodi neprijme None)."""
+    li.setArt(dict((k, v) for k, v in art.items() if v))
+
+
 class Directory(object):
     """Jeden výpis adresára doplnku."""
 
@@ -66,7 +71,7 @@ class Directory(object):
             art.update(thumb=image, fanart=image)
         elif icon:
             art["thumb"] = icon
-        li.setArt(art)
+        _set_art(li, art)
         if plot:
             li.getVideoInfoTag().setPlot(plot)
         if context:
@@ -78,7 +83,7 @@ class Directory(object):
         url = self.url(action="show", id=show["id"], title=show.get("title"))
         li = xbmcgui.ListItem(show.get("title") or show["id"], offscreen=True)
         image = show.get("image")
-        li.setArt({"thumb": image, "icon": image, "landscape": image, "fanart": image or ku.ADDON_FANART})
+        _set_art(li, {"thumb": image, "icon": image, "landscape": image, "fanart": image or ku.ADDON_FANART})
         tag = li.getVideoInfoTag()
         tag.setMediaType("tvshow")
         tag.setTitle(show.get("title") or "")
@@ -96,7 +101,7 @@ class Directory(object):
             label = "%s – %s" % (format_date(ep.get("date", "")), ep.get("subtitle") or ep.get("name") or show_title)
         li = xbmcgui.ListItem(label, offscreen=True)
         image = ep.get("image")
-        li.setArt({"thumb": image, "icon": image, "landscape": image, "fanart": image or ku.ADDON_FANART})
+        _set_art(li, {"thumb": image, "icon": image, "landscape": image, "fanart": image or ku.ADDON_FANART})
         li.setProperty("IsPlayable", "true")
 
         plot = ep.get("plot") or ""
@@ -152,8 +157,7 @@ def _kodi_major():
 def resolve(handle, path, info, use_isa=False, manifest="hls", subtitles=None):
     """Odovzdá Kodi čerstvú stream URL (setResolvedUrl)."""
     li = xbmcgui.ListItem(path=path, offscreen=True)
-    if info.get("image"):
-        li.setArt({"thumb": info["image"]})
+    _set_art(li, {"thumb": info.get("image")})
     tag = li.getVideoInfoTag()
     if info.get("title"):
         tag.setTitle(info["title"])

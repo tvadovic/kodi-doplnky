@@ -38,6 +38,9 @@ class ListItem(object):
         self.path = path
 
     def setArt(self, art):
+        for key, value in art.items():
+            if not isinstance(value, str):  # skutočné Kodi neprijme None
+                raise TypeError("setArt %s=%r" % (key, value))
         self.art.update(art)
 
     def setProperty(self, key, value):
