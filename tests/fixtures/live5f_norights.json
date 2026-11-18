@@ -1,0 +1,35 @@
+{
+   "clip" : {
+      "backend" : "n17",
+      "channelId" : "2",
+      "dateTimeStart" : "2026-11-18T16:00:00",
+      "dateTimeStop" : "2026-11-18T16:25:45",
+      "description" : "Populárno-náučný dokumentárny seriál",
+      "duration" : "1544",
+      "episodeNumber" : "24",
+      "image" : "https://www.stvr.sk/media/a501/image/file/2/1592/vedeli-ste.jpg",
+      "internet" : "N",
+      "mediaid" : "stv2",
+      "premiereDate" : "20261118",
+      "programid" : "630932",
+      "ratingKids" : "N",
+      "request" : "<REQ>",
+      "series" : "Vedeli ste?",
+      "seriesId" : "14369419812",
+      "sources" : [
+         {
+            "src" : "https://n17.stv.livebox.sk/stv-tv/_definst_/stv2-mob.smil/playlist.m3u8?auth=<TOKEN>",
+            "type" : "application/x-mpegurl"
+         },
+         {
+            "src" : "https://n17.stv.livebox.sk/stv-tv/_definst_/stv2-3.stream/manifest.mpd?auth=<TOKEN>",
+            "type" : "application/dash+xml"
+         }
+      ],
+      "subtitle" : "24. časť",
+      "timestart" : "1795014116000",
+      "timestop" : "1795015660000",
+      "title" : "24. časť - od 16:01",
+      "titleorig" : "Vedeli ste?"
+   }
+}

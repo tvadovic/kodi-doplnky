@@ -241,6 +241,10 @@ def parse_live(data):
 
     Mimo vysielania (Live O, NR SR…) clip nemá program: chýba title
     a dateTimeStart == dateTimeStop.
+
+    online=False: na program nemá STVR práva pre internet (internet != 'Y').
+    Stream vtedy beží, ale namiesto obrazu ukazuje tabuľku „vysielanie nie je
+    možné šíriť prostredníctvom internetu“. Rovnaké pravidlo ako web.
     """
     info = parse_stream(data)
     clip = data["clip"]
@@ -252,6 +256,7 @@ def parse_live(data):
         start=start[11:16] if has_program else "",
         stop=stop[11:16] if has_program else "",
         duration=0,
+        online=not clip.get("programid") or clip.get("internet") == "Y",
     )
     if "placeholder" in info["image"]:
         info["image"] = ""

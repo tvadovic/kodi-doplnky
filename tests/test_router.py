@@ -31,6 +31,7 @@ ROUTES = [
     (r"search/full", "search_full.json"),
     (r"live5f\.json\?c=1$", "live5f.json"),
     (r"live5f\.json\?c=99$", "archive5f_missing.json"),
+    (r"live5f\.json\?c=2$", "live5f_norights.json"),
     (r"live5f\.json", "live5f_offline.json"),
     (r"stv-tv/_definst_/stv\d\.smil/playlist\.m3u8", "live_master.m3u8"),
     (r"playlist\.m3u8", "master.m3u8"),
@@ -189,6 +190,19 @@ def test_live_lists_seven_channels_with_program():
     assert items[0] == ("Jednotka – Dámsky klub (12:25–13:55)", BASE + "?action=play_live&c=1", False)
     assert items[-1] == ("NR SR", BASE + "?action=play_live&c=5", False)   # mimo vysielania
     assert xbmcplugin.ITEMS[0][1].getProperty("IsPlayable") == "true"
+    assert items[1][0] == "[COLOR grey]Dvojka – Vedeli ste? (16:00–16:25) – nevysiela sa online[/COLOR]"
+    assert xbmcplugin.ITEMS[1][1].tag.info["plot"].startswith("STVR nemá na tento program práva")
+
+
+def test_play_live_without_rights_still_plays_and_notifies():
+    run("action=play_live&c=2")
+    assert xbmcplugin.STATE["resolved"][0] is True
+    assert xbmcgui.NOTIFICATIONS == ["Vedeli ste? – nevysiela sa online"]
+
+
+def test_play_live_with_rights_does_not_notify():
+    run("action=play_live&c=1")
+    assert xbmcgui.NOTIFICATIONS == []
 
 
 def test_live_list_survives_failing_channel(monkeypatch):

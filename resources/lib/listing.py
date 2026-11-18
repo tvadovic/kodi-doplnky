@@ -141,6 +141,10 @@ class Directory(object):
             label = "%s – %s" % (name, info["title"])
             if info.get("start") and info.get("stop"):
                 label += " (%s–%s)" % (info["start"], info["stop"])
+        plot = info.get("plot") or ""
+        if info.get("online") is False:
+            label = "[COLOR grey]%s – %s[/COLOR]" % (label, ku.tr(30009))
+            plot = ku.tr(30035) + ("\n\n" + plot if plot else "")
         li = xbmcgui.ListItem(label, offscreen=True)
         image = info.get("image")
         _set_art(li, {"thumb": image, "icon": image or ku.ADDON_ICON, "landscape": image,
@@ -149,8 +153,8 @@ class Directory(object):
         tag = li.getVideoInfoTag()
         tag.setMediaType("video")
         tag.setTitle(label)
-        if info.get("plot"):
-            tag.setPlot(info["plot"])
+        if plot:
+            tag.setPlot(plot)
         xbmcplugin.addDirectoryItem(self.handle, self.url(action="play_live", c=channel), li, isFolder=False)
 
     def add_action(self, label, url, icon="DefaultFolder.png", context=None):

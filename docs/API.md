@@ -202,6 +202,11 @@ Použitie zistené z `/embed/live/{c}` (stránky `/televizia/live-*` ho vkladaj�
                     {"type":"application/dash+xml","src":"https://n14.stv.livebox.sk/stv-tv/_definst_/stv1-3.stream/manifest.mpd?auth=b64:…"}]}}
 ```
 
+* **`internet`**: `Y` = program má práva pre internet. Inak (`N`, napr. filmy, seriály, časť športu)
+  stream beží ďalej, ale namiesto obrazu ukazuje tabuľku „vysielanie nie je možné šíriť
+  prostredníctvom internetu“ (segmenty ~5× menšie). Web vtedy pri `programid && internet != 'Y'`
+  prekryje prehrávač nápisom „Momentálne nevysielame online“ a prehrávanie nezastaví.
+  Doplnok program v zozname označí a pri spustení upozorní, prehrávanie tiež nezastaví.
 * Mimo vysielania (Live O, Live STVR, NR SR často) chýba `title`, `dateTimeStart == dateTimeStop`
   a `image` je `…/stvr-placeholder.jpg`. Stream aj tak funguje.
 * `auth` = `b64:` + base64(`_any_|{expiry}|{sha1}`), teda **nie je viazaný na cestu**.

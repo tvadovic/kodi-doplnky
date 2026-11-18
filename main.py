@@ -286,6 +286,9 @@ class Router(object):
                 path = variant["url"] if variant else master
                 break
         ku.log("Live %s: %s" % (self.params["c"], path))
+        if not info["online"]:
+            # Prehrávanie nezastavujeme (ako web): obraz sa vráti s ďalším programom.
+            ku.notify("%s – %s" % (info["title"], ku.tr(30009)))
         listing.resolve(self.handle, path, info, use_isa=use_isa, manifest="hls")
 
     # ------------------------------------------------------------ hľadanie

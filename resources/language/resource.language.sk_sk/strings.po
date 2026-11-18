@@ -48,6 +48,10 @@ msgctxt "#30008"
 msgid "Live"
 msgstr "Naživo"
 
+msgctxt "#30009"
+msgid "not streamed online"
+msgstr "nevysiela sa online"
+
 msgctxt "#30010"
 msgid "Subgenres…"
 msgstr "Podžánre…"
@@ -131,6 +135,10 @@ msgstr "Medzipamäť vymazaná"
 msgctxt "#30034"
 msgid "Enter at least 3 characters"
 msgstr "Zadajte aspoň 3 znaky"
+
+msgctxt "#30035"
+msgid "STVR has no internet rights for this programme. The stream shows a notice instead of the picture until the next programme."
+msgstr "STVR nemá na tento program práva pre internet. Namiesto obrazu ukazuje oznam, kým nezačne ďalší program."
 
 msgctxt "#30100"
 msgid "Playback"

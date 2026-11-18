@@ -157,12 +157,20 @@ def test_live_program():
     assert info["plot"].startswith("Radosti a starosti")
     assert info["image"].endswith("dk-2026.jpg")
     assert info["duration"] == 0
+    assert info["online"] is True
+
+
+def test_live_program_without_internet_rights():
+    info = api.parse_live(fixture_json("live5f_norights.json"))
+    assert info["title"] == "Vedeli ste?" and info["hls"]
+    assert info["online"] is False
 
 
 def test_live_offline_channel():
     info = api.parse_live(fixture_json("live5f_offline.json"))
     assert info["hls"]
     assert (info["title"], info["start"], info["image"]) == ("", "", "")
+    assert info["online"] is True    # bez programu web tabuľku „nevysielame“ neukazuje
 
 
 def test_live_full_quality():
