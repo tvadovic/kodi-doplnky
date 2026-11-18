@@ -112,17 +112,32 @@ def test_calendar_and_day():
     assert any(label == "Otvoriť reláciu" for label, _ in xbmcplugin.ITEMS[0][1].context)
 
 
-def test_search_new_replaces_container():
+def test_new_search_is_action_item_not_folder():
+    # Priečinok, ktorý skončí succeeded=False, Kodi vráti späť a prebije Container.Update.
+    items = run("action=search")
+    assert items[0][0] == "Nové hľadanie…" and items[0][2] is False
+    assert xbmcplugin.ITEMS[0][1].getProperty("IsPlayable") == "false"
+
+
+def test_search_new_opens_results():
     xbmc.KEYBOARD_INPUT[:] = ["duel"]
     run("action=search_new")
-    assert xbmc.BUILTINS[-1] == "Container.Update(%s?action=search_results&q=duel,replace)" % BASE
+    assert xbmc.BUILTINS == ["Container.Update(%s?action=search_results&q=duel)" % BASE]
+    assert "succeeded" not in xbmcplugin.STATE  # akcia neukončuje žiadny adresár
     assert [i[0] for i in run("action=search")][1] == "duel"
+
+
+def test_search_new_cancelled():
+    xbmc.KEYBOARD_INPUT[:] = []
+    run("action=search_new")
+    assert xbmc.BUILTINS == [] and "succeeded" not in xbmcplugin.STATE
 
 
 def test_search_too_short():
     xbmc.KEYBOARD_INPUT[:] = ["du"]
     run("action=search_new")
     assert xbmcgui.NOTIFICATIONS == ["Zadajte aspoň 3 znaky"]
+    assert xbmc.BUILTINS == []
 
 
 def test_search_results_paging():

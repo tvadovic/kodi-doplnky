@@ -25,7 +25,7 @@ QUALITY_HEIGHTS = (0, 1080, 720, 480, 360)   # index = nastavenie max_quality
 FILTER_PARAMS = api.FILTER_KEYS
 
 # Akcie, ktoré nevytvárajú adresár (RunPlugin z kontextového menu / nastavení).
-COMMAND_ACTIONS = {"wl_add", "wl_remove", "search_remove", "search_clear", "clear_cache"}
+COMMAND_ACTIONS = {"wl_add", "wl_remove", "search_new", "search_remove", "search_clear", "clear_cache"}
 
 
 class Router(object):
@@ -254,7 +254,7 @@ class Router(object):
 
     def do_search(self):
         d = self.dir
-        d.add_folder(ku.tr(30015), d.url(action="search_new"), icon="DefaultAddonsSearch.png")
+        d.add_action(ku.tr(30015), d.url(action="search_new"), icon="DefaultAddonsSearch.png")
         clear = (ku.tr(30018), "RunPlugin(%s)" % d.url(action="search_clear"))
         for query in self.history.items():
             d.add_folder(query, d.url(action="search_results", q=query), icon="DefaultAddonsSearch.png",
@@ -263,16 +263,17 @@ class Router(object):
         d.end(cache_to_disc=False)
 
     def do_search_new(self):
+        """Akčná položka (nie priečinok): klávesnica a potom prechod na výsledky.
+
+        Späť z výsledkov vedie na zoznam hľadaní, klávesnica sa znova neotvára.
+        """
         query = ku.keyboard(ku.tr(30016))
-        if query is None:
-            return self.dir.fail()
+        if not query:
+            return
         if len(query) < 3:
-            ku.notify(ku.tr(30034))
-            return self.dir.fail()
+            return ku.notify(ku.tr(30034))
         self.history.add(query)
-        # Nahradí položku „nové hľadanie“ výsledkami, aby návrat späť znova neotváral klávesnicu.
-        self.dir.fail()
-        ku.builtin("Container.Update(%s,replace)" % self.dir.url(action="search_results", q=query))
+        ku.builtin("Container.Update(%s)" % self.dir.url(action="search_results", q=query))
 
     def do_search_results(self):
         query = self.params["q"]
