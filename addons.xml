@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.video.stvr" name="STVR archív (neoficiálny)" version="0.1.2" provider-name="tvadovic">
+<addon id="plugin.video.stvr" name="STVR archív (neoficiálny)" version="0.2.0" provider-name="tvadovic">
     <requires>
         <import addon="xbmc.python" version="3.0.1"/>
         <import addon="inputstream.adaptive" optional="true"/>
@@ -9,10 +9,10 @@
         <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="sk_SK">Archív relácií STVR (Jednotka, Dvojka, :24, Šport)</summary>
-        <summary lang="en_GB">Archive of STVR (Slovak public TV) shows</summary>
-        <description lang="sk_SK">Neoficiálny doplnok na prehliadanie, vyhľadávanie a prehrávanie archívu STVR (stvr.sk/televizia/archiv). Žánre, A–Z, kanály, kalendár, vyhľadávanie a zoznam Pozrieť neskôr.</description>
-        <description lang="en_GB">Unofficial add-on to browse, search and play the STVR archive (stvr.sk/televizia/archiv). Genres, A–Z, channels, calendar, search and a watch later list.</description>
+        <summary lang="sk_SK">Archív a živé vysielanie STVR (Jednotka, Dvojka, :24, Šport…)</summary>
+        <summary lang="en_GB">Archive and live channels of STVR (Slovak public TV)</summary>
+        <description lang="sk_SK">Neoficiálny doplnok na prehliadanie, vyhľadávanie a prehrávanie archívu STVR (stvr.sk/televizia/archiv) a sledovanie 7 živých kanálov. Žánre, A–Z, kanály, kalendár, vyhľadávanie a zoznam Pozrieť neskôr.</description>
+        <description lang="en_GB">Unofficial add-on to browse, search and play the STVR archive (stvr.sk/televizia/archiv) and watch 7 live channels. Genres, A–Z, channels, calendar, search and a watch later list.</description>
         <disclaimer lang="sk_SK">Doplnok nie je spojený so STVR. Obsah je dostupný len zo Slovenska; doplnok geoblokáciu neobchádza.</disclaimer>
         <disclaimer lang="en_GB">This add-on is not affiliated with STVR. Content is only available from Slovakia; the add-on does not bypass geo-blocking.</disclaimer>
         <language>sk</language>
@@ -20,7 +20,8 @@
         <license>GPL-2.0-or-later</license>
         <website>https://www.stvr.sk/televizia/archiv</website>
         <source>https://github.com/tvadovic/plugin.video.stvr</source>
-        <news>0.1.2: nové hľadanie hneď zobrazí výsledky
+        <news>0.2.0: živé vysielanie (7 kanálov STVR)
+0.1.2: nové hľadanie hneď zobrazí výsledky
 0.1.1: inštalácia a automatické aktualizácie cez Repozitár tvadovic
 0.1.0: prvá verzia</news>
         <assets>
