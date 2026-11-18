@@ -29,6 +29,10 @@ ROUTES = [
     (r"archive5f\.json\?id=630571", "archive5f.json"),
     (r"archive5f\.json", "archive5f_missing.json"),
     (r"search/full", "search_full.json"),
+    (r"live5f\.json\?c=1$", "live5f.json"),
+    (r"live5f\.json\?c=99$", "archive5f_missing.json"),
+    (r"live5f\.json", "live5f_offline.json"),
+    (r"stv-tv/_definst_/stv\d\.smil/playlist\.m3u8", "live_master.m3u8"),
     (r"playlist\.m3u8", "master.m3u8"),
 ]
 
@@ -67,7 +71,7 @@ def run(query):
 
 def test_root_menu():
     items = run("")
-    assert [i[0] for i in items][:3] == ["Žánre", "A–Z", "Kanály"]
+    assert [i[0] for i in items][:4] == ["Naživo", "Žánre", "A–Z", "Kanály"]
     assert all(folder for _, _, folder in items)
 
 
@@ -176,6 +180,53 @@ def test_play_isa_setting_ignored_when_not_installed():
     xbmcaddon.SETTINGS.update(use_isa="true", isa_manifest="1")
     run("action=play&id=630571")
     assert "inputstream" not in xbmcplugin.STATE["resolved"][1].properties
+
+
+def test_live_lists_seven_channels_with_program():
+    items = run("action=live")
+    assert len(items) == 7
+    assert items[0] == ("Jednotka – Dámsky klub (12:25–13:55)", BASE + "?action=play_live&c=1", False)
+    assert items[-1] == ("NR SR", BASE + "?action=play_live&c=5", False)   # mimo vysielania
+    assert xbmcplugin.ITEMS[0][1].getProperty("IsPlayable") == "true"
+
+
+def test_live_list_survives_failing_channel(monkeypatch):
+    def flaky(self, path, params=None, ttl=0):
+        if "c=2" in self._url(path, params):
+            raise api.ApiError("timeout")
+        return fake_fetch(self, path, params, ttl)
+    monkeypatch.setattr(api.Client, "fetch", flaky)
+    labels = [i[0] for i in run("action=live")]
+    assert len(labels) == 7 and labels[1] == "Dvojka"
+
+
+def test_play_live_prefers_full_quality_master():
+    run("action=play_live&c=1")
+    ok, li = xbmcplugin.STATE["resolved"]
+    assert ok and li.getPath().endswith("/stv1.smil/playlist.m3u8?auth=<TOKEN>")
+    assert li.mimetype == "application/vnd.apple.mpegurl"
+
+
+def test_play_live_max_quality_picks_variant():
+    xbmcaddon.SETTINGS["max_quality"] = "2"  # 720p
+    run("action=play_live&c=1")
+    assert xbmcplugin.STATE["resolved"][1].getPath().endswith("SK-stv1.smil/chunklist_b2691072.m3u8")
+
+
+def test_play_live_falls_back_to_official_master(monkeypatch):
+    def no_full(self, path, params=None, ttl=0):
+        if "/stv1.smil/" in self._url(path, params):
+            raise api.ApiError("HTTP 404")
+        return fake_fetch(self, path, params, ttl)
+    monkeypatch.setattr(api.Client, "fetch", no_full)
+    run("action=play_live&c=1")
+    assert xbmcplugin.STATE["resolved"][1].getPath().endswith("stv1-mob.smil/playlist.m3u8?auth=<TOKEN>")
+
+
+def test_play_live_unavailable():
+    run("action=play_live&c=99")
+    assert xbmcplugin.STATE["resolved"][0] is False
+    assert "nie je dostupné" in xbmcgui.DIALOGS[0]
 
 
 def test_play_unavailable_shows_dialog():

@@ -1,7 +1,7 @@
 # STVR archív (neoficiálny) – doplnok pre Kodi
 
 Doplnok `plugin.video.stvr` prehráva [archív STVR](https://www.stvr.sk/televizia/archiv)
-(Jednotka, Dvojka, :24, Šport) priamo v Kodi, teda aj na televízore
+(Jednotka, Dvojka, :24, Šport) a jej živé vysielanie priamo v Kodi, teda aj na televízore
 (Chromecast s Google TV, Android TV, PC…).
 
 > Doplnok nie je oficiálny a nie je nijako spojený so STVR. Používa rovnaké verejné
@@ -10,6 +10,8 @@ Doplnok `plugin.video.stvr` prehráva [archív STVR](https://www.stvr.sk/televiz
 
 ## Čo vie
 
+* **Naživo**: 7 kanálov (Jednotka, Dvojka, :24, Šport, Live O, Live STVR, NR SR)
+  s práve vysielaným programom, až do 1080p
 * **Žánre** s podžánrami (Filmy, Seriály, Zábava → Varenie, …)
 * **A–Z**, **Kanály**, **Pre deti**, **Európska tvorba**: rovnaké filtre ako na webe
 * **Kalendár**: dni vysielania, pri každom dni program s prehrateľnými epizódami

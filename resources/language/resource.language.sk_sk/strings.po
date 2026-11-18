@@ -44,6 +44,10 @@ msgctxt "#30007"
 msgid "European works"
 msgstr "Európska tvorba"
 
+msgctxt "#30008"
+msgid "Live"
+msgstr "Naživo"
+
 msgctxt "#30010"
 msgid "Subgenres…"
 msgstr "Podžánre…"

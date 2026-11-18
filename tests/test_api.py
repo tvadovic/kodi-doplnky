@@ -147,6 +147,31 @@ def test_hls_master_relative_urls():
     assert variants[0]["url"] == "https://h/a/b/low/index.m3u8"
 
 
+# --- naživo
+
+def test_live_program():
+    info = api.parse_live(fixture_json("live5f.json"))
+    assert info["hls"].endswith("stv1-mob.smil/playlist.m3u8?auth=<TOKEN>")
+    assert info["title"] == "Dámsky klub"          # titleorig, nie "… - od 12:28"
+    assert (info["start"], info["stop"]) == ("12:25", "13:55")
+    assert info["plot"].startswith("Radosti a starosti")
+    assert info["image"].endswith("dk-2026.jpg")
+    assert info["duration"] == 0
+
+
+def test_live_offline_channel():
+    info = api.parse_live(fixture_json("live5f_offline.json"))
+    assert info["hls"]
+    assert (info["title"], info["start"], info["image"]) == ("", "", "")
+
+
+def test_live_full_quality():
+    base = "https://n14.stv.livebox.sk/stv-tv/_definst_/"
+    assert api.live_full_quality(base + "stv1-mob.smil/playlist.m3u8?auth=x") == base + "stv1.smil/playlist.m3u8?auth=x"
+    assert api.live_full_quality(base + "stv4-lq.smil/playlist.m3u8") == base + "stv4.smil/playlist.m3u8"
+    assert api.live_full_quality(base + "stv1.smil/playlist.m3u8") == base + "stv1.smil/playlist.m3u8"
+
+
 # --- vyhľadávanie a kalendár
 
 def test_search_full_skips_shows_without_archive():

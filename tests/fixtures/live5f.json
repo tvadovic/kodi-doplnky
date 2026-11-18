@@ -1,0 +1,34 @@
+{
+   "clip" : {
+      "backend" : "n13",
+      "channelId" : "1",
+      "dateTimeStart" : "2026-11-18T12:25:00",
+      "dateTimeStop" : "2026-11-18T13:55:00",
+      "description" : "Radosti a starosti nielen zo sveta žien. \nDámsky klub je denný magazín o ženách pre ženy, ktorý vám ponúka rady, postrehy, námety, odpovede na otázky a problémy, ktoré trápia súčasnú ženu.",
+      "duration" : "5400",
+      "episodeNumber" : "",
+      "image" : "https://www.stvr.sk/media/a501/image/file/2/1578/dk-2026.jpg",
+      "internet" : "Y",
+      "mediaid" : "stv1",
+      "premiereDate" : "20261118",
+      "programid" : "630635",
+      "ratingKids" : "N",
+      "request" : "<REQ>",
+      "series" : "Dámsky klub",
+      "seriesId" : "",
+      "sources" : [
+         {
+            "src" : "https://n13.stv.livebox.sk/stv-tv/_definst_/stv1-mob.smil/playlist.m3u8?auth=<TOKEN>",
+            "type" : "application/x-mpegurl"
+         },
+         {
+            "src" : "https://n13.stv.livebox.sk/stv-tv/_definst_/stv1-3.stream/manifest.mpd?auth=<TOKEN>",
+            "type" : "application/dash+xml"
+         }
+      ],
+      "timestart" : "1795001331000",
+      "timestop" : "1795006731000",
+      "title" : "Dámsky klub - od 12:28",
+      "titleorig" : "Dámsky klub"
+   }
+}

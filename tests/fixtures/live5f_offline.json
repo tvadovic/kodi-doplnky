@@ -1,0 +1,31 @@
+{
+   "clip" : {
+      "backend" : "n14",
+      "channelId" : "",
+      "dateTimeStart" : "2026-11-18T13:38:35",
+      "dateTimeStop" : "2026-11-18T13:38:35",
+      "duration" : "",
+      "episodeNumber" : "",
+      "image" : "https://www.stvr.sk/media/a501/image/file/2/1548/stvr-placeholder.jpg",
+      "internet" : "",
+      "mediaid" : "stv5",
+      "premiereDate" : "20261118",
+      "programid" : "",
+      "ratingKids" : "N",
+      "request" : "<REQ>",
+      "series" : "",
+      "seriesId" : "",
+      "sources" : [
+         {
+            "src" : "https://n14.stv.livebox.sk/stv-tv/_definst_/stv5-mob.smil/playlist.m3u8?auth=<TOKEN>",
+            "type" : "application/x-mpegurl"
+         },
+         {
+            "src" : "https://n14.stv.livebox.sk/stv-tv/_definst_/stv5-3.stream/manifest.mpd?auth=<TOKEN>",
+            "type" : "application/dash+xml"
+         }
+      ],
+      "timestart" : "",
+      "timestop" : ""
+   }
+}

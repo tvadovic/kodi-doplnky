@@ -12,6 +12,7 @@ STRINGS = [
     (30005, "Watch later", "Pozrieť neskôr"),
     (30006, "For kids", "Pre deti"),
     (30007, "European works", "Európska tvorba"),
+    (30008, "Live", "Naživo"),
     (30010, "Subgenres…", "Podžánre…"),
     (30012, "Next page…", "Ďalšia strana…"),
     (30013, "Older…", "Staršie…"),
