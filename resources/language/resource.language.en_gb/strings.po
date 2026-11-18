@@ -44,6 +44,10 @@ msgctxt "#30007"
 msgid "European works"
 msgstr ""
 
+msgctxt "#30008"
+msgid "Live"
+msgstr ""
+
 msgctxt "#30010"
 msgid "Subgenres…"
 msgstr ""

@@ -179,6 +179,42 @@ Doplnok geoblokáciu nijako neobchádza.
 
 ---
 
+## 3a. Živé vysielanie (JSON)
+
+`GET /json/live5f.json?c={kanál}`, rovnaký tvar ako `archive5f.json` (`clip.sources`).
+Použitie zistené z `/embed/live/{c}` (stránky `/televizia/live-*` ho vkladajú cez iframe).
+
+| stránka | názov | `c` | `mediaid` |
+|---|---|---|---|
+| `/televizia/live-1` | Jednotka | `1` | `stv1` |
+| `/televizia/live-2` | Dvojka | `2` | `stv2` |
+| `/televizia/live-24` | :24 | `3` | `stv3` |
+| `/televizia/sport` | Šport | `15` | `stv4` |
+| `/televizia/live-o` | Live O | `4` | `stv6` |
+| `/televizia/live-stvr` | Live STVR | `6` | `stv5` |
+| `/televizia/live-nr-sr` | NR SR | `5` | `stv7` |
+
+```json
+{"clip":{"channelId":"1","title":"Dámsky klub - od 12:28","titleorig":"Dámsky klub",
+         "description":"…","image":"https://…/dk-2026.jpg","programid":"630635",
+         "dateTimeStart":"2026-11-18T12:25:00","dateTimeStop":"2026-11-18T13:55:00",
+         "sources":[{"type":"application/x-mpegurl","src":"https://n14.stv.livebox.sk/stv-tv/_definst_/stv1-mob.smil/playlist.m3u8?auth=b64:…"},
+                    {"type":"application/dash+xml","src":"https://n14.stv.livebox.sk/stv-tv/_definst_/stv1-3.stream/manifest.mpd?auth=b64:…"}]}}
+```
+
+* Mimo vysielania (Live O, Live STVR, NR SR často) chýba `title`, `dateTimeStart == dateTimeStop`
+  a `image` je `…/stvr-placeholder.jpg`. Stream aj tak funguje.
+* `auth` = `b64:` + base64(`_any_|{expiry}|{sha1}`), teda **nie je viazaný na cestu**.
+* HLS z webu (`stvN-mob.smil`, Šport `stv4-lq.smil`) má len 480x270 – 854x480 (Šport do 720p).
+  Na tom istom serveri s tým istým tokenom je **`stvN.smil`** s variantmi 640x360 – **1920x1080**
+  (NR SR 4:3, do 1440x1080). Doplnok skúša najprv ten a pri chybe použije URL z webu.
+* DASH `manifest.mpd` vracia **404** (aj s `Referer`/`Origin`), doplnok preto pri live používa len HLS.
+* Segmenty sú MPEG-TS, bez DRM, bez `Referer`.
+* `/json/snippet/broadcast_live.json?channel={c}` vracia aktuálny program (`pgmdata`) bez streamu;
+  doplnok ho nepotrebuje, `live5f.json` má to isté.
+
+---
+
 ## 4. Vyhľadávanie (JSON)
 
 ### Lite (našepkávač)

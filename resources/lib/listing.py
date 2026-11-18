@@ -133,6 +133,26 @@ class Directory(object):
         li.addContextMenuItems(context)
         xbmcplugin.addDirectoryItem(self.handle, self.play_url(ep["id"]), li, isFolder=False)
 
+    def add_live(self, channel, name, info=None):
+        """Live kanál → prehrateľná položka s práve vysielaným programom (ak je známy)."""
+        info = info or {}
+        label = name
+        if info.get("title"):
+            label = "%s – %s" % (name, info["title"])
+            if info.get("start") and info.get("stop"):
+                label += " (%s–%s)" % (info["start"], info["stop"])
+        li = xbmcgui.ListItem(label, offscreen=True)
+        image = info.get("image")
+        _set_art(li, {"thumb": image, "icon": image or ku.ADDON_ICON, "landscape": image,
+                      "fanart": image or ku.ADDON_FANART})
+        li.setProperty("IsPlayable", "true")
+        tag = li.getVideoInfoTag()
+        tag.setMediaType("video")
+        tag.setTitle(label)
+        if info.get("plot"):
+            tag.setPlot(info["plot"])
+        xbmcplugin.addDirectoryItem(self.handle, self.url(action="play_live", c=channel), li, isFolder=False)
+
     def add_action(self, label, url, icon="DefaultFolder.png", context=None):
         """Akčná položka (napr. nové hľadanie): nie priečinok ani video.
 

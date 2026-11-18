@@ -68,3 +68,14 @@ def test_calendar_and_day(client):
 def test_search(client):
     shows, total, _ = client.search("duel")
     assert any(s["title"] == "Duel" for s in shows)
+
+
+def test_live_channels(client):
+    programs = client.live_all(c for c, _ in api.LIVE_CHANNELS)
+    assert all(programs.values()), [c for c, info in programs.items() if not info]
+    assert programs["1"]["title"]   # Jednotka vysiela stále
+    # plná kvalita (bez -mob) funguje s tým istým tokenom a má aspoň 720p
+    variants = client.hls_variants(api.live_full_quality(programs["1"]["hls"]))
+    assert variants and variants[0]["height"] >= 720
+    with urlopen(Request(variants[0]["url"], headers={"User-Agent": api.DEFAULT_USER_AGENT}), timeout=20) as r:
+        assert r.read(7) == b"#EXTM3U"

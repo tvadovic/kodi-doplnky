@@ -27,6 +27,7 @@ def setContent(handle, content):
 
 def endOfDirectory(handle, succeeded=True, updateListing=False, cacheToDisc=True):
     STATE["succeeded"] = succeeded
+    STATE["cache_to_disc"] = cacheToDisc
 
 
 def setResolvedUrl(handle, succeeded, listitem):

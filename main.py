@@ -66,7 +66,7 @@ class Router(object):
             self._fail(action)
 
     def _fail(self, action):
-        if action == "play":
+        if action in ("play", "play_live"):
             xbmcplugin.setResolvedUrl(self.handle, False, xbmcgui.ListItem(offscreen=True))
         elif action not in COMMAND_ACTIONS:
             self.dir.fail()
@@ -84,6 +84,7 @@ class Router(object):
 
     def do_root(self):
         d = self.dir
+        d.add_folder(ku.tr(30008), d.url(action="live"), icon="DefaultAddonPVRClient.png")
         d.add_folder(ku.tr(30000), d.url(action="genres"), icon="DefaultGenre.png")
         d.add_folder(ku.tr(30001), d.url(action="letters"), icon="DefaultMovieTitle.png")
         d.add_folder(ku.tr(30002), d.url(action="channels"), icon="DefaultTVShows.png")
@@ -92,7 +93,8 @@ class Router(object):
         d.add_folder(ku.tr(30003), d.url(action="calendar"), icon="DefaultYear.png")
         d.add_folder(ku.tr(30004), d.url(action="search"), icon="DefaultAddonsSearch.png")
         d.add_folder(ku.tr(30005), d.url(action="watchlater"), icon="DefaultPlaylist.png")
-        d.end()
+        # Bez cache: inak Kodi po aktualizácii doplnku ukazuje staré menu až do reštartu.
+        d.end(cache_to_disc=False)
 
     def do_genres(self):
         for genre in self.client.genres():
@@ -218,7 +220,7 @@ class Router(object):
         if not path:
             raise api.NotAvailableError("Chýba HLS stream pre %s" % episode_id)
 
-        max_height = QUALITY_HEIGHTS[min(max(ku.setting_int("max_quality"), 0), len(QUALITY_HEIGHTS) - 1)]
+        max_height = self._max_height()
         if max_height and manifest == "hls":
             try:
                 variant = api.pick_variant(self.client.hls_variants(path), max_height)
@@ -230,6 +232,9 @@ class Router(object):
 
         subtitles = self._subtitles(episode_id, info["subtitles"]) if ku.setting_bool("subtitles", True) else []
         listing.resolve(self.handle, path, info, use_isa=use_isa, manifest=manifest, subtitles=subtitles)
+
+    def _max_height(self):
+        return QUALITY_HEIGHTS[min(max(ku.setting_int("max_quality"), 0), len(QUALITY_HEIGHTS) - 1)]
 
     def _subtitles(self, episode_id, tracks):
         """Stiahne WebVTT do dočasného súboru {id}.{jazyk}.vtt, aby Kodi poznalo jazyk."""
@@ -249,6 +254,39 @@ class Router(object):
                 f.write(text)
             files.append(name)
         return files
+
+    # ------------------------------------------------------------ naživo
+
+    def do_live(self):
+        programs = self.client.live_all(c for c, _ in api.LIVE_CHANNELS)
+        for channel, name in api.LIVE_CHANNELS:
+            self.dir.add_live(channel, name, programs.get(channel))
+        self.dir.end("videos", cache_to_disc=False)
+
+    def do_play_live(self):
+        """Live kanál cez HLS (DASH z live5f.json vracia 404). Vždy čerstvý token."""
+        info = self.client.live(self.params["c"])
+        if not info["hls"]:
+            raise api.NotAvailableError("Chýba HLS stream kanála %s" % self.params["c"])
+        use_isa = ku.setting_bool("use_isa") and ku.has_addon("inputstream.adaptive")
+        max_height = self._max_height()
+        path = info["hls"]
+        # Najprv plná kvalita (do 1080p), potom oficiálny master z webu (do 480p).
+        masters = [api.live_full_quality(path)]
+        if masters[0] != path:
+            masters.append(path)
+        for master in masters:
+            try:
+                variants = self.client.hls_variants(master)
+            except api.ApiError as err:
+                ku.log("Live master %s nefunguje: %s" % (master, err))
+                continue
+            if variants:
+                variant = api.pick_variant(variants, max_height) if max_height else None
+                path = variant["url"] if variant else master
+                break
+        ku.log("Live %s: %s" % (self.params["c"], path))
+        listing.resolve(self.handle, path, info, use_isa=use_isa, manifest="hls")
 
     # ------------------------------------------------------------ hľadanie
 

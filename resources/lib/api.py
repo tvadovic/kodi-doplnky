@@ -27,6 +27,9 @@ DEFAULT_USER_AGENT = (
 # Hodnoty filtrov z HTML archívu (data-filter-value).
 CHANNELS = [("1", "Jednotka"), ("2", "Dvojka"), ("3", ":24"), ("15", "Šport")]
 LETTERS = [("9", "0-9")] + [(c, c.upper()) for c in "abcdefghijklmnopqrstuvwxyz"]
+# Živé vysielanie: (c pre live5f.json, názov), poradie ako v menu stvr.sk/televizia.
+LIVE_CHANNELS = [("1", "Jednotka"), ("2", "Dvojka"), ("3", ":24"), ("15", "Šport"),
+                 ("4", "Live O"), ("6", "Live STVR"), ("5", "NR SR")]
 FILTER_KEYS = ("ch", "l", "date", "content")
 
 TTL_SECTION = 24 * 3600     # base-params a podžánre sa menia zriedka
@@ -231,6 +234,40 @@ def parse_stream(data):
         "image": clip.get("image") or "",
         "duration": parse_length(clip.get("length")),
     }
+
+
+def parse_live(data):
+    """JSON live5f.json → stream kanála a práve vysielaný program.
+
+    Mimo vysielania (Live O, NR SR…) clip nemá program: chýba title
+    a dateTimeStart == dateTimeStop.
+    """
+    info = parse_stream(data)
+    clip = data["clip"]
+    start, stop = clip.get("dateTimeStart") or "", clip.get("dateTimeStop") or ""
+    has_program = bool(clip.get("title")) and start != stop
+    info.update(
+        title=(_text(clip.get("titleorig")) or info["title"]) if has_program else "",
+        plot=info["plot"] if has_program else "",
+        start=start[11:16] if has_program else "",
+        stop=stop[11:16] if has_program else "",
+        duration=0,
+    )
+    if "placeholder" in info["image"]:
+        info["image"] = ""
+    return info
+
+
+_RE_LIVE_LOW = re.compile(r"-(?:mob|lq)(\.smil/)")
+
+
+def live_full_quality(url):
+    """Web dáva live HLS len do 480p (stv1-mob.smil, Šport stv4-lq.smil).
+
+    Ten istý server s tým istým tokenom (nie je viazaný na cestu) má aj
+    stv1.smil do 1080p. Ak URL nemá známu príponu, vráti ju nezmenenú.
+    """
+    return _RE_LIVE_LOW.sub(r"\1", url, count=1)
 
 
 def parse_hls_master(text, base_url):
@@ -439,6 +476,26 @@ class Client(object):
             return {}
         with ThreadPoolExecutor(max_workers=min(workers, len(ids))) as pool:
             return dict(zip(ids, pool.map(self.duration, ids)))
+
+    # --- živé vysielanie
+
+    def live(self, channel):
+        """Čerstvý live stream kanála a aktuálny program. Nekešuje sa (token)."""
+        return parse_live(self.fetch_json("/json/live5f.json", {"c": channel}))
+
+    def live_all(self, channels, workers=7):
+        """Aktuálny program viacerých kanálov naraz. Kanál s chybou má None."""
+        channels = list(channels)
+
+        def one(channel):
+            try:
+                return self.live(channel)
+            except ApiError:
+                return None
+        if not channels:
+            return {}
+        with ThreadPoolExecutor(max_workers=min(workers, len(channels))) as pool:
+            return dict(zip(channels, pool.map(one, channels)))
 
     def hls_variants(self, master_url):
         return parse_hls_master(self.fetch(master_url), master_url)
