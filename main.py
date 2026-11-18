@@ -93,7 +93,8 @@ class Router(object):
         d.add_folder(ku.tr(30003), d.url(action="calendar"), icon="DefaultYear.png")
         d.add_folder(ku.tr(30004), d.url(action="search"), icon="DefaultAddonsSearch.png")
         d.add_folder(ku.tr(30005), d.url(action="watchlater"), icon="DefaultPlaylist.png")
-        d.end()
+        # Bez cache: inak Kodi po aktualizácii doplnku ukazuje staré menu až do reštartu.
+        d.end(cache_to_disc=False)
 
     def do_genres(self):
         for genre in self.client.genres():

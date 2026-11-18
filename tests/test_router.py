@@ -73,6 +73,7 @@ def test_root_menu():
     items = run("")
     assert [i[0] for i in items][:4] == ["Naživo", "Žánre", "A–Z", "Kanály"]
     assert all(folder for _, _, folder in items)
+    assert xbmcplugin.STATE["cache_to_disc"] is False   # nové položky menu hneď po aktualizácii
 
 
 def test_genres_and_genre_listing():
