@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="plugin.video.stvr" name="STVR archív (neoficiálny)" version="0.1.0" provider-name="tvadovic">
+    <requires>
+        <import addon="xbmc.python" version="3.0.1"/>
+        <import addon="inputstream.adaptive" optional="true"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="main.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="sk_SK">Archív relácií STVR (Jednotka, Dvojka, :24, Šport)</summary>
+        <summary lang="en_GB">Archive of STVR (Slovak public TV) shows</summary>
+        <description lang="sk_SK">Neoficiálny doplnok na prehliadanie, vyhľadávanie a prehrávanie archívu STVR (stvr.sk/televizia/archiv). Žánre, A–Z, kanály, kalendár, vyhľadávanie a zoznam Pozrieť neskôr.</description>
+        <description lang="en_GB">Unofficial add-on to browse, search and play the STVR archive (stvr.sk/televizia/archiv). Genres, A–Z, channels, calendar, search and a watch later list.</description>
+        <disclaimer lang="sk_SK">Doplnok nie je spojený so STVR. Obsah je dostupný len zo Slovenska; doplnok geoblokáciu neobchádza.</disclaimer>
+        <disclaimer lang="en_GB">This add-on is not affiliated with STVR. Content is only available from Slovakia; the add-on does not bypass geo-blocking.</disclaimer>
+        <language>sk</language>
+        <platform>all</platform>
+        <license>GPL-2.0-or-later</license>
+        <website>https://www.stvr.sk/televizia/archiv</website>
+        <source>https://github.com/tvadovic/plugin.video.stvr</source>
+        <news>0.1.0: prvá verzia</news>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+    </extension>
+</addon>
+<addon id="repository.tvadovic" name="Repozitár tvadovic" version="1.0.0" provider-name="tvadovic">
+    <extension point="xbmc.addon.repository" name="Repozitár tvadovic">
+        <dir>
+            <info compressed="false">https://tvadovic.github.io/plugin.video.stvr/addons.xml</info>
+            <checksum>https://tvadovic.github.io/plugin.video.stvr/addons.xml.md5</checksum>
+            <datadir zip="true">https://tvadovic.github.io/plugin.video.stvr/</datadir>
+            <hashes>false</hashes>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="sk_SK">Repozitár doplnkov tvadovic (STVR archív)</summary>
+        <summary lang="en_GB">tvadovic add-on repository (STVR archive)</summary>
+        <description lang="sk_SK">Inštaluje a automaticky aktualizuje doplnok STVR archív (neoficiálny). Zdroj: https://tvadovic.github.io/plugin.video.stvr/</description>
+        <description lang="en_GB">Installs and automatically updates the STVR archive (unofficial) add-on. Source: https://tvadovic.github.io/plugin.video.stvr/</description>
+        <platform>all</platform>
+        <license>GPL-2.0-or-later</license>
+        <source>https://github.com/tvadovic/plugin.video.stvr</source>
+        <news>1.0.0: prvá verzia</news>
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
+    </extension>
+</addon>
+</addons>
