@@ -1,4 +1,5 @@
-# Vygeneruje icon.png (512x512) a fanart.jpg (1920x1080) doplnku.
+# Vygeneruje icon.png (512x512) a fanart.jpg (1920x1080) doplnku
+# a icon.png repozitára (repository.tvadovic/icon.png).
 # Vlastná grafika (retro televízor + play), nepoužíva logo STVR.
 # Spustenie: powershell -ExecutionPolicy Bypass -File dev\make_art.ps1
 
@@ -103,4 +104,35 @@ $params = New-Object System.Drawing.Imaging.EncoderParameters(1)
 $params.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter([System.Drawing.Imaging.Encoder]::Quality, [long]88)
 $bmp.Save((Join-Path $root "fanart.jpg"), $codec, $params)
 $bmp.Dispose()
-Write-Output "icon.png a fanart.jpg vygenerované v $root"
+
+# ---------------- repository.tvadovic/icon.png (krabica so šípkou = repozitár doplnkov)
+$bmp = New-Object System.Drawing.Bitmap($size, $size)
+$g = [System.Drawing.Graphics]::FromImage($bmp)
+Set-Quality $g
+$g.Clear([System.Drawing.Color]::Transparent)
+$bg = New-Object System.Drawing.Drawing2D.LinearGradientBrush(
+    (New-Object System.Drawing.Point(0, 0)), (New-Object System.Drawing.Point($size, $size)), $navy, $navyDark)
+$g.FillPath($bg, (New-RoundRect 0 0 $size $size 96))
+$pen = New-Object System.Drawing.Pen($white, [float]16)
+$pen.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+$pen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+$pen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+$box = New-RoundRect 116 190 280 170 26
+$g.FillPath((New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(26, 255, 255, 255))), $box)
+$g.DrawPath($pen, $box)
+$g.DrawLine($pen, 116, 250, 396, 250)
+# šípka nadol do krabice
+$apen = New-Object System.Drawing.Pen($coral, [float]22)
+$apen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+$apen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+$apen.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+$g.DrawLine($apen, 256, 70, 256, 300)
+$g.DrawLines($apen, @(
+    (New-Object System.Drawing.PointF(196, 240)),
+    (New-Object System.Drawing.PointF(256, 300)),
+    (New-Object System.Drawing.PointF(316, 240))))
+$g.DrawString("REPO", $font, (New-Object System.Drawing.SolidBrush($white)), (New-Object System.Drawing.RectangleF(0, 370, $size, 90)), $fmt)
+$g.Dispose()
+$bmp.Save((Join-Path $root "repository.tvadovic\icon.png"), [System.Drawing.Imaging.ImageFormat]::Png)
+$bmp.Dispose()
+Write-Output "icon.png, fanart.jpg a repository.tvadovic\icon.png vygenerované v $root"

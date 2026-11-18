@@ -23,29 +23,32 @@ Doplnok `plugin.video.stvr` prehráva [archív STVR](https://www.stvr.sk/televiz
 ## Inštalácia
 
 Doplnok potrebuje **Kodi 20 alebo novšie** (testované na Kodi 21 Omega).
-Nemá žiadne závislosti.
+Najjednoduchšie je nainštalovať ho z repozitára, Kodi ho potom **aktualizuje samo**.
+Postup je rovnaký na PC aj na TV.
 
-1. Stiahnite si `plugin.video.stvr-X.Y.Z.zip` z
-   [Releases](https://github.com/tvadovic/plugin.video.stvr/releases/latest).
-2. V Kodi zapnite inštaláciu z neznámych zdrojov:
-   *Nastavenia → Systém → Doplnky → Neznáme zdroje* (zapnúť).
+1. **Povoliť neznáme zdroje:** *Nastavenia → Systém → Doplnky → Neznáme zdroje* (zapnúť, potvrdiť).
+2. **Pridať zdroj:** *Nastavenia → Správca súborov → Pridať zdroj → &lt;Žiadne&gt;*, zadajte URL
 
-### PC (Windows, Linux, macOS)
-3. *Doplnky → ikona otvorenej krabice (Prehliadač doplnkov) → Inštalovať zo súboru ZIP*
-   a vyberte stiahnutý ZIP.
-4. Doplnok nájdete v *Doplnky → Video doplnky → STVR archív (neoficiálny)*.
+   ```
+   https://tvadovic.github.io/plugin.video.stvr/
+   ```
+
+   a ako názov napr. `tvadovic` → *OK*.
+3. **Nainštalovať repozitár:** *Doplnky → ikona otvorenej krabice (Prehliadač doplnkov) →
+   Inštalovať zo súboru ZIP → tvadovic → `repository.tvadovic-X.Y.Z.zip`*.
+4. **Nainštalovať doplnok:** v tom istom menu *Inštalovať z repozitára → Repozitár tvadovic →
+   Video doplnky → STVR archív (neoficiálny) → Inštalovať*.
+
+Doplnok nájdete v *Doplnky → Video doplnky → STVR archív (neoficiálny)*.
 
 ### Chromecast s Google TV / Android TV
-Na TV je najťažšie dostať tam ZIP súbor. Možnosti:
+Kodi nainštalujte z Google Play a postupujte podľa krokov vyššie. Nič netreba sťahovať
+ani kopírovať, jediná práca navyše je napísať URL zdroja ovládačom.
 
-* **Aplikácia Downloader** (Google Play): do adresy zadajte odkaz na ZIP z Releases.
-  Stiahne ho do priečinka *Download*. V Kodi potom *Inštalovať zo súboru ZIP → External storage → Download*.
-* **Zdieľaný priečinok v sieti**: v Kodi *Súbory → Pridať zdroj* s cestou
-  `smb://…` k priečinku s ZIP-om na PC, potom *Inštalovať zo súboru ZIP* z tohto zdroja.
-* **USB kľúč** cez OTG adaptér.
-
-Neskôr pribudne vlastný Kodi repozitár. Potom stačí pridať jednu URL ako zdroj
-a doplnok sa bude aktualizovať sám.
+### Ručne zo ZIP (bez automatických aktualizácií)
+`plugin.video.stvr-X.Y.Z.zip` je aj v
+[Releases](https://github.com/tvadovic/plugin.video.stvr/releases/latest).
+Nainštalujete ho cez *Inštalovať zo súboru ZIP*, novšie verzie si však treba sťahovať ručne.
 
 ## Nastavenia
 
@@ -82,14 +85,21 @@ python dev/run.py "?action=search_new" --input duel
 
 Ďalšie nástroje:
 * `python dev/build_zip.py`: zabalí `dist/plugin.video.stvr-<verzia>.zip`
+  (`--addon repository.tvadovic` zabalí repozitár doplnkov)
+* `python dev/build_repo.py dist/*.zip --out <checkout gh-pages>`: poskladá Kodi repozitár
+  (`addons.xml`, `.md5`, ZIP-y, ikony a `index.html` pre Kodi)
 * `python dev/gen_strings.py`: vygeneruje `strings.po` (sk/en) z jedného zoznamu
-* `dev/make_art.ps1`: vygeneruje `icon.png` a `fanart.jpg`
+* `dev/make_art.ps1`: vygeneruje `icon.png`, `fanart.jpg` a ikonu repozitára
 
 ### Vydanie novej verzie
 1. Zvýšte `version` (a `news`) v `addon.xml`.
 2. `git tag v0.2.0 && git push --tags`
-3. GitHub Action spustí testy, zabalí ZIP a pridá ho do Release.
+3. GitHub Action spustí testy, zabalí ZIP, pridá ho do Release a aktualizuje Kodi
+   repozitár na vetve `gh-pages` (GitHub Pages). Kodi si novú verziu stiahne samo.
    Ak tag nesedí s verziou v `addon.xml`, build zlyhá.
+
+Repozitár doplnkov je v [`repository.tvadovic/`](repository.tvadovic/addon.xml). Ak ho zmeníte,
+zvýšte jeho `version`, inak zostane zverejnený starý ZIP (rovnaká verzia sa neprepisuje).
 
 ## Licencia
 
