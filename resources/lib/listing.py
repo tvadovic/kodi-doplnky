@@ -134,8 +134,18 @@ class Directory(object):
         xbmcplugin.addDirectoryItem(self.handle, self.play_url(ep["id"]), li, isFolder=False)
 
     def add_action(self, label, url, icon="DefaultFolder.png", context=None):
-        """Položka, ktorá niečo vykoná (napr. nové hľadanie), stále ako priečinok."""
-        self.add_folder(label, url, icon=icon, context=context)
+        """Akčná položka (napr. nové hľadanie): nie priečinok ani video.
+
+        Kodi ju po kliknutí spustí ako skript s handle -1, bez otvárania adresára.
+        Akcia potom môže prejsť inam cez Container.Update; pri priečinku by to
+        Kodi prebilo návratom späť, ak sa adresár ukončí ako neúspešný.
+        """
+        li = xbmcgui.ListItem(label, offscreen=True)
+        _set_art(li, {"icon": icon, "thumb": icon, "fanart": ku.ADDON_FANART})
+        li.setProperty("IsPlayable", "false")
+        if context:
+            li.addContextMenuItems(context)
+        xbmcplugin.addDirectoryItem(self.handle, url, li, isFolder=False)
 
     def end(self, content="", cache_to_disc=True, update_listing=False):
         if content:
