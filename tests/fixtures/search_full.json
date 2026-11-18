@@ -1,0 +1,274 @@
+
+		
+{
+	"total": "210",
+	"offset": "20",
+	"blocks": {
+	
+	
+	
+	
+		"video_series": {
+			"title": "Relácie",
+			"total": "210",
+			"more": 170,
+			"hits": [
+	
+				{
+					"score": "3.1870534",
+					"name": "Slovensko dnes",
+					"name_hl": "<em>Slovensko</em> dnes",
+					"uri": "https://www.stvr.sk/televizia/program/6730",
+					"latest_episode_uri": "",
+					"description": "",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1556/slovensko-dnes.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "3.1870534",
+					"name": "Slovensko nepoznané",
+					"name_hl": "<em>Slovensko</em> nepoznané",
+					"uri": "https://www.stvr.sk/televizia/program/12553",
+					"latest_episode_uri": "",
+					"description": "História a obnovenie trate Čiernohorskej železničky v mikroregióne Čierneho Hronu.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1556/prve-slovenske-gymnazium.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "3.1870534",
+					"name": "Slovensko v srdci",
+					"name_hl": "<em>Slovensko</em> v srdci",
+					"uri": "https://www.stvr.sk/televizia/archiv/13780/171330",
+					"latest_episode_uri": "https://www.stvr.sk/televizia/archiv/13780/171330",
+					"description": "Slávnostný galaprogram k 100.výročiu Martinskej deklarácie.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1556/stefanik-100rokov-vznik-csr.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "3.1870534",
+					"name": "Švédsko - Slovensko",
+					"name_hl": "Švédsko - <em>Slovensko</em>",
+					"uri": "https://www.stvr.sk/televizia/program/13778",
+					"latest_episode_uri": "",
+					"description": "Priamy prenos futbalového stretnutia.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1556/futbal01-394.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.6514153",
+					"name": "Slovensko má plán",
+					"name_hl": "<em>Slovensko</em> má plán",
+					"uri": "https://www.stvr.sk/televizia/archiv/22172/559171",
+					"latest_episode_uri": "https://www.stvr.sk/televizia/archiv/22172/559171",
+					"description": "Diskusná relácia Slovensko má plán s moderátorkou Slávkou Dvořákovou predstavuje zaujímavé témy ovplyvňujúce náš súčasný život, ale tiež našu budúcnosť.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1558/slovensko-ma-plan.png",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.6238742",
+					"name": "Slovensko  v roku 2013",
+					"name_hl": "<em>Slovensko</em>  v roku 2013",
+					"uri": "https://www.stvr.sk/televizia/program/2592",
+					"latest_episode_uri": "",
+					"description": "",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1553/stvr-placeholder.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.6238742",
+					"name": "Genius loci Slovensko",
+					"name_hl": "Genius loci <em>Slovensko</em>",
+					"uri": "https://www.stvr.sk/televizia/archiv/14242/186238",
+					"latest_episode_uri": "https://www.stvr.sk/televizia/archiv/14242/183559",
+					"description": "Dokumentárna séria predstavuje jedinečné objekty Slovenska.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1558/genius-loci.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.6238742",
+					"name": "Slovensko pre Ukrajinu",
+					"name_hl": "<em>Slovensko</em> pre Ukrajinu",
+					"uri": "https://www.stvr.sk/televizia/program/19908",
+					"latest_episode_uri": "",
+					"description": "Priamy prenos z charitatívneho koncertu v Bratislave, ktorým si pripomíname prvé výročie ruskej invázie na Ukrajine.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1556/slovensko-pre-ukrajinu.png",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.6238742",
+					"name": "SLOVENSKO: HOKEJ POD KRUHMI",
+					"name_hl": "<em>SLOVENSKO</em>: HOKEJ POD KRUHMI",
+					"uri": "https://www.stvr.sk/televizia/archiv/18672/309447",
+					"latest_episode_uri": "https://www.stvr.sk/televizia/archiv/18672/309447",
+					"description": "",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1556/hokejovy-sen.png",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.6132164",
+					"name": "S tebou ma baví Slovensko",
+					"name_hl": "S tebou ma baví <em>Slovensko</em>",
+					"uri": "https://www.stvr.sk/televizia/program/11093",
+					"latest_episode_uri": "",
+					"description": "Dokumentárna roadmovie o tom, ako to dopadne, keď sa Tom – írsky študent a Gabika - slovenská herečka a vášnivá športovkyňa, rozhodnú na bicykloch spoločne precestovať Slovensko.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1556/s-tebou-ma-bavi-slovensko.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.595767",
+					"name": "Slovensko  v roku 2013",
+					"name_hl": "<em>Slovensko</em>  v roku 2013",
+					"uri": "https://www.stvr.sk/televizia/program/5926",
+					"latest_episode_uri": "",
+					"description": "",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1553/stvr-placeholder.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.595767",
+					"name": "POVSTANIE  Slovensko 1939-1945",
+					"name_hl": "POVSTANIE  <em>Slovensko</em> 1939-1945",
+					"uri": "https://www.stvr.sk/televizia/program/3921",
+					"latest_episode_uri": "",
+					"description": "Dokumentárny film k 70. výročiu významnej vojnovej udalosti - Slovenského národného povstania.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1553/stvr-placeholder.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.595767",
+					"name": "Športuj doma, Slovensko",
+					"name_hl": "Športuj doma, <em>Slovensko</em>",
+					"uri": "https://www.stvr.sk/televizia/program/15829",
+					"latest_episode_uri": "",
+					"description": "",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1558/sportuj1.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.595767",
+					"name": "Rádio Slovensko Slovensku",
+					"name_hl": "Rádio <em>Slovensko</em> Slovensku",
+					"uri": "https://www.stvr.sk/televizia/archiv/22518/568968",
+					"latest_episode_uri": "https://www.stvr.sk/televizia/archiv/22518/568968",
+					"description": "Dokument o vďačnosti, že aj malá pomoc od ľudí môže splniť veľké sny.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1557/radioslovenskoslovensku-1920x1080.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.595767",
+					"name": "Slovensko vo filme",
+					"name_hl": "<em>Slovensko</em> vo filme",
+					"uri": "https://www.stvr.sk/televizia/archiv/23234/628445",
+					"latest_episode_uri": "https://www.stvr.sk/televizia/archiv/23234/628445",
+					"description": "Genius loci filmových lokácií prostredníctvom svedectiev účastníkov nakrúcania.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1582/slovensko-vo-filme.png",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.5952206",
+					"name": "Slovensko - prírodný klenot",
+					"name_hl": "<em>Slovensko</em> - prírodný klenot",
+					"uri": "https://www.stvr.sk/televizia/program/10558",
+					"latest_episode_uri": "",
+					"description": "Prirodopisný film Zdena Vlacha o bohatstvách flóry a fauny v jednotlivých regiónoch Slovenska počas štyroch ročných období.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1556/karpaty-les-1png.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.5952206",
+					"name": "Futbalový zápas Poľsko - Slovensko",
+					"name_hl": "Futbalový zápas Poľsko - <em>Slovensko</em>",
+					"uri": "https://www.stvr.sk/televizia/program/5575",
+					"latest_episode_uri": "",
+					"description": "Priamy prenos.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1553/stvr-placeholder.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.5952206",
+					"name": "Tenis - Slovensko muži",
+					"name_hl": "Tenis - <em>Slovensko</em> muži",
+					"uri": "https://www.stvr.sk/televizia/program/9504",
+					"latest_episode_uri": "",
+					"description": "Priamy prenos.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1553/stvr-placeholder.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.5952206",
+					"name": "Slovensko Advent 2021",
+					"name_hl": "<em>Slovensko</em> Advent 2021",
+					"uri": "https://www.stvr.sk/televizia/archiv/18204/299615",
+					"latest_episode_uri": "https://www.stvr.sk/televizia/archiv/18204/298781",
+					"description": "",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1558/slovensko-advent-2021.jpg",
+					"next_airing_p": ""
+				},
+	
+				{
+					"score": "2.5952206",
+					"name": "Modlitba za Slovensko",
+					"name_hl": "Modlitba za <em>Slovensko</em>",
+					"uri": "https://www.stvr.sk/televizia/program/15784",
+					"latest_episode_uri": "",
+					"description": "",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/16/1560/modlitba-za-sk-jpg.jpg",
+					"next_airing_p": ""
+				}
+	
+			]
+		}
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+
+	
+
+	
+	
+	
+	
+	
+
+
+	
+
+	
+
+
+	
+
+	
+	
+	}
+}
+	

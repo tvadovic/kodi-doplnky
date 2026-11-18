@@ -1,0 +1,160 @@
+
+	
+{
+	"total": "23",
+	"blocks": {
+	
+		"page": {
+			"title": "Weby",
+			"total": "4",
+			"more": 1,
+			"hits": [
+	
+				{
+					"score": "3.5772076",
+					"name": "Správy STVR",
+					"name_hl": "<em>Správy</em> STVR",
+					"uri": "https://spravy.stvr.sk",
+					"description": "Aktuálne správy, reportáže a spravodajský obsah STVR z domova aj zo sveta.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				},
+	
+				{
+					"score": "0.15170406",
+					"name": "Rádio Regina Západ",
+					"name_hl": "Rádio Regina Západ",
+					"uri": "https://reginazapad.stvr.sk",
+					"description": "Regionálne správy a programy pre západné Slovensko.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				},
+	
+				{
+					"score": "0.14835817",
+					"name": "Rádio Regina Stred",
+					"name_hl": "Rádio Regina Stred",
+					"uri": "https://reginastred.stvr.sk",
+					"description": "Regionálne správy a programy pre stredné Slovensko.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				}
+	
+			]
+		}
+		
+	
+	
+	
+	
+	,
+		"video_series": {
+			"title": "TV relácie",
+			"total": "14",
+			"more": 11,
+			"hits": [
+	
+				{
+					"score": "3.316957",
+					"name": "Správy",
+					"name_hl": "<em>Správy</em>",
+					"uri": "https://www.stvr.sk/televizia/archiv/19948/404371",
+					"description": "",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				},
+	
+				{
+					"score": "3.2922056",
+					"name": "Správy",
+					"name_hl": "<em>Správy</em>",
+					"uri": "https://www.stvr.sk/televizia/archiv/21274/630610",
+					"description": "Najdôležitejšie aktuálne udalosti z domova, zo sveta a ekonomiky, ale aj regionálne a športové...",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				},
+	
+				{
+					"score": "3.2922056",
+					"name": "Správy „N“",
+					"name_hl": "<em>Správy</em> „N“",
+					"uri": "https://www.stvr.sk/televizia/archiv/21269/631198",
+					"description": "Najdôležitejšie aktuálne udalosti z domova, zo sveta a ekonomiky, ale aj regionálne a športové...",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				}
+	
+			]
+		}
+		
+	
+
+	,
+		"audio_series": {
+			"title": "Rádio relácie",
+			"total": "2",
+			"more": 0,
+			"hits": [
+	
+				{
+					"score": "1.7995007",
+					"name": "Kultúrne správy Rádia Devín",
+					"name_hl": "Kultúrne <em>správy</em> Rádia Devín",
+					"uri": "https://www.stvr.sk/radio/archiv/11338/2920614",
+					"description": "Spravodajský blok Rádia Devín venovaný aktuálnemu kultúrnemu... Aktuálne informácie z oblasti... Vysielame každý pracovný deň o 9:00...",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				},
+	
+				{
+					"score": "0.044399533",
+					"name": "Slovensko dnes, magazín o Slovensku",
+					"name_hl": "Slovensko dnes, magazín o Slovensku",
+					"uri": "https://www.stvr.sk/radio/archiv/1488/2920436",
+					"description": "Slovensko dnes, podcast v slovenskom jazyku prináša Slovákom žijúcim v zahraničí, a nielen im,...",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				}
+	
+			]
+		}
+		
+	
+
+	
+	
+	
+	
+	,
+		"video_live": {
+			"title": "Vysielame",
+			"total": "2",
+			"more": 0,
+			"hits": [
+	
+				{
+					"score": "",
+					"name": "Správy",
+					"name_hl": "<em>Správy</em>",
+					"uri": "https://www.stvr.sk/live/jednotka",
+					"description": "Najdôležitejšie udalosti uplynulých hodín, aktuálne dianie doma aj vo svete."
+				}
+	
+			]
+		}
+	
+	,
+		"audio_live": {
+			"title": "Vysielame",
+			"total": "1",
+			"more": 0,
+			"hits": [
+	
+				{
+					"score": "",
+					"name": "Hírek - Správy",
+					"name_hl": "Hírek - <em>Správy</em>",
+					"uri": "https://patria.stvr.sk/player",
+					"description": ""
+				}
+	
+			]
+		}
+	
+	
+	
+	}
+}
+	

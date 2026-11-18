@@ -1,0 +1,36 @@
+{
+   "IP" : "0.0.0.0",
+   "request" : "r5Fh0BAm",
+   "clip" : {
+      "title" : "Duel",
+      "description" : "\nVedomostná súťaž s jedným moderátorom a dvoma hráčmi.",
+      "subtitles" : {
+         "tracks" : [
+            {
+               "lang" : "sk",
+               "id" : 185390,
+               "crossorigin" : "anonymous",
+               "default" : "",
+               "src" : "https://www.stvr.sk/plain/webvtt/video_captions.vtt?id=185390&__lng=sk",
+               "label" : "Slovensky"
+            }
+         ]
+      },
+      "authors" : " ",
+      "datetime_create" : "2026-11-13 17:56",
+      "sources" : [
+         {
+            "type" : "application/x-mpegurl",
+            "src" : "https://n11.stv.livebox.sk/stv-tv-arch/_definst_/smil:a510/00/0018/001853/00185390.smil/playlist.m3u8?auth=<TOKEN>"
+         },
+         {
+            "type" : "application/dash+xml",
+            "src" : "https://e7.stv.livebox.sk/stv-tv-arch/_definst_/smil:a510/00/0018/001853/00185390.smil/manifest.mpd?auth=<TOKEN>"
+         }
+      ],
+      "length" : "00:29:21",
+      "image" : "https://www.stvr.sk/media/a501/image/file/2/1550/duel-bann.png",
+      "mediaid" : "193112",
+      "backend" : "e1"
+   }
+}

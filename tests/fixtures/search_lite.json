@@ -1,0 +1,62 @@
+
+	
+{
+	"total": "3",
+	"blocks": {
+		
+	
+	
+	
+	
+	
+		"video_series": {
+			"title": "TV relácie",
+			"total": "3",
+			"more": 0,
+			"hits": [
+	
+				{
+					"score": "7.3842697",
+					"name": "Duel",
+					"name_hl": "<em>Duel</em>",
+					"uri": "https://www.stvr.sk/televizia/archiv/14126/630608",
+					"description": "Vedomostná súťaž s jedným moderátorom a dvoma hráčmi.",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				},
+	
+				{
+					"score": "4.6771894",
+					"name": "Duel šampiónov",
+					"name_hl": "<em>Duel</em> šampiónov",
+					"uri": "https://www.stvr.sk/televizia/archiv/23335/592246",
+					"description": "V Dueli šampiónov súťažia úspešní, viacnásobní víťazi relácie Duel oproti svojim vyzývateľom,...",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				},
+	
+				{
+					"score": "4.665425",
+					"name": "Duel junior",
+					"name_hl": "<em>Duel</em> junior",
+					"uri": "https://www.stvr.sk/televizia/archiv/23285/629464",
+					"description": "Vedomostná súťaž určená pre mládež. Okrem vedomostí rozhoduje aj rozhľad, pohotovosť a taktika....",
+					"thumbnail": "https://www.stvr.sk/media/a501/image/file/13/1548/stvr-placeholder.jpg"
+				}
+	
+			]
+		}
+		
+	
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	}
+}
+	
