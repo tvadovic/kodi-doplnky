@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.stvr" name="STVR archív (neoficiálny)" version="0.1.0" provider-name="tvadovic">
+<addon id="plugin.video.stvr" name="STVR archív (neoficiálny)" version="0.1.1" provider-name="tvadovic">
     <requires>
         <import addon="xbmc.python" version="3.0.1"/>
         <import addon="inputstream.adaptive" optional="true"/>
@@ -19,7 +19,8 @@
         <license>GPL-2.0-or-later</license>
         <website>https://www.stvr.sk/televizia/archiv</website>
         <source>https://github.com/tvadovic/plugin.video.stvr</source>
-        <news>0.1.0: prvá verzia</news>
+        <news>0.1.1: inštalácia a automatické aktualizácie cez Repozitár tvadovic
+0.1.0: prvá verzia</news>
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
