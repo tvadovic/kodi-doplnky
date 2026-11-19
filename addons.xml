@@ -30,8 +30,8 @@
         </assets>
     </extension>
 </addon>
-<addon id="repository.tvadovic" name="Repozitár tvadovic" version="1.0.0" provider-name="tvadovic">
-    <extension point="xbmc.addon.repository" name="Repozitár tvadovic">
+<addon id="repository.tvadovic" name="Magrathea Repository" version="1.0.1" provider-name="tvadovic">
+    <extension point="xbmc.addon.repository" name="Magrathea Repository">
         <dir>
             <info compressed="false">https://tvadovic.github.io/plugin.video.stvr/addons.xml</info>
             <checksum>https://tvadovic.github.io/plugin.video.stvr/addons.xml.md5</checksum>
@@ -40,14 +40,36 @@
         </dir>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="sk_SK">Repozitár doplnkov tvadovic (STVR archív)</summary>
-        <summary lang="en_GB">tvadovic add-on repository (STVR archive)</summary>
-        <description lang="sk_SK">Inštaluje a automaticky aktualizuje doplnok STVR archív (neoficiálny). Zdroj: https://tvadovic.github.io/plugin.video.stvr/</description>
-        <description lang="en_GB">Installs and automatically updates the STVR archive (unofficial) add-on. Source: https://tvadovic.github.io/plugin.video.stvr/</description>
+        <summary lang="sk_SK">Magrathea Repository: doplnky tvadovic</summary>
+        <summary lang="en_GB">Magrathea Repository: tvadovic add-ons</summary>
+        <description lang="sk_SK">Inštaluje a automaticky aktualizuje doplnky STVR archív (neoficiálny) a Trakt.tv (Stream Cinema). Zdroj: https://tvadovic.github.io/plugin.video.stvr/</description>
+        <description lang="en_GB">Installs and automatically updates the STVR archive (unofficial) and Trakt.tv (Stream Cinema) add-ons. Source: https://tvadovic.github.io/plugin.video.stvr/</description>
         <platform>all</platform>
         <license>GPL-2.0-or-later</license>
         <source>https://github.com/tvadovic/plugin.video.stvr</source>
-        <news>1.0.0: prvá verzia</news>
+        <news>1.0.1: nový názov Magrathea Repository, doplnok Trakt.tv (Stream Cinema)</news>
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
+    </extension>
+</addon>
+<addon id="script.streamcinema.traktfix" name="Trakt.tv (Stream Cinema)" version="1.0.1" provider-name="tvadovic">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    <extension point="xbmc.python.script" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="startup"/>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="sk_SK">Neoficiálna oprava Trakt.tv pre Stream Cinema CZ a SK</summary>
+        <summary lang="en_GB">Unofficial Trakt.tv fix for Stream Cinema CZ a SK</summary>
+        <description lang="sk_SK">Server Stream Cinema prestal posielať priečinok Trakt.tv a zrušil rozhrania, cez ktoré sa zoznamy z Traktu párovali so streamami. Doplnok pri štarte Kodi nahrá do Stream Cinema opravené súbory Trakt (len ak presne sedí verzia, inak nič nemení). Spustenie otvorí priečinok Trakt.tv: vlastné zoznamy, watchlist, zoznamy priateľov, históriu a rozpozerané. Nie je spojený s autormi Stream Cinema ani s Trakt.tv.</description>
+        <description lang="en_GB">The Stream Cinema server stopped sending the Trakt.tv folder and removed the endpoints that matched Trakt lists with streams. On Kodi startup this add-on copies patched Trakt files into Stream Cinema (only for an exactly known version, otherwise it changes nothing). Running it opens the Trakt.tv folder: own lists, watchlist, friends' lists, history and in progress. Not affiliated with the Stream Cinema authors or Trakt.tv.</description>
+        <platform>all</platform>
+        <license>GPL-3.0-only</license>
+        <source>https://github.com/tvadovic/plugin.video.stvr/tree/main/script.streamcinema.traktfix</source>
+        <news>1.0.1: Stream Cinema 2.6.10.3+k19; zoznamy, watchlist, história a rozpozerané s popisom a obrázkami z Traktu</news>
         <assets>
             <icon>icon.png</icon>
         </assets>
