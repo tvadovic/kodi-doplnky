@@ -90,7 +90,7 @@ def esc(text):
 
 
 def main():
-    root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "resources", "language")
+    root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "plugin.video.stvr", "resources", "language")
     for folder, lang, column in (("resource.language.en_gb", "en_GB", 1), ("resource.language.sk_sk", "sk_SK", 2)):
         lines = [HEADER.format(lang=lang)]
         if lang == "en_GB":

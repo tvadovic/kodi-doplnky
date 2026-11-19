@@ -82,7 +82,7 @@ $fmt = New-Object System.Drawing.StringFormat
 $fmt.Alignment = [System.Drawing.StringAlignment]::Center
 $g.DrawString($text, $font, (New-Object System.Drawing.SolidBrush($white)), (New-Object System.Drawing.RectangleF(0, 370, $size, 90)), $fmt)
 $g.Dispose()
-$bmp.Save((Join-Path $root "icon.png"), [System.Drawing.Imaging.ImageFormat]::Png)
+$bmp.Save((Join-Path $root "plugin.video.stvr\icon.png"), [System.Drawing.Imaging.ImageFormat]::Png)
 $bmp.Dispose()
 
 # ---------------- fanart.jpg
@@ -102,7 +102,7 @@ $g.Dispose()
 $codec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $_.MimeType -eq "image/jpeg" }
 $params = New-Object System.Drawing.Imaging.EncoderParameters(1)
 $params.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter([System.Drawing.Imaging.Encoder]::Quality, [long]88)
-$bmp.Save((Join-Path $root "fanart.jpg"), $codec, $params)
+$bmp.Save((Join-Path $root "plugin.video.stvr\fanart.jpg"), $codec, $params)
 $bmp.Dispose()
 
 # ---------------- repository.tvadovic/icon.png (krabica so šípkou = repozitár doplnkov)
@@ -155,4 +155,4 @@ $g.DrawString("TRAKT", $font, (New-Object System.Drawing.SolidBrush($white)), (N
 $g.Dispose()
 $bmp.Save((Join-Path $root "script.streamcinema.traktfix\icon.png"), [System.Drawing.Imaging.ImageFormat]::Png)
 $bmp.Dispose()
-Write-Output "icon.png, fanart.jpg, repository.tvadovic\icon.png a script.streamcinema.traktfix\icon.png vygenerované v $root"
+Write-Output "plugin.video.stvr\icon.png, fanart.jpg, repository.tvadovic\icon.png a script.streamcinema.traktfix\icon.png vygenerované v $root"

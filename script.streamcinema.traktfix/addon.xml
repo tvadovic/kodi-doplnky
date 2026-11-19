@@ -22,7 +22,7 @@
         <description lang="en_GB">The Stream Cinema server stopped sending the Trakt.tv folder and removed the endpoints that matched Trakt lists with streams. On Kodi startup this add-on copies patched Trakt files into Stream Cinema (only for an exactly known version, otherwise it changes nothing). Running it opens the Trakt.tv folder: own lists, watchlist, friends' lists, history and in progress. The context menu of a Stream Cinema movie or show gets a Trakt.tv lists entry to add it to or remove it from the watchlist and own lists. Not affiliated with the Stream Cinema authors or Trakt.tv.</description>
         <platform>all</platform>
         <license>GPL-3.0-only</license>
-        <source>https://github.com/tvadovic/plugin.video.stvr/tree/main/script.streamcinema.traktfix</source>
+        <source>https://github.com/tvadovic/kodi-doplnky/tree/main/script.streamcinema.traktfix</source>
         <news>1.0.2: kontextové menu Trakt.tv zoznamy (pridať/odobrať, nový zoznam)&#10;1.0.1: Stream Cinema 2.6.10.3+k19; zoznamy, watchlist, história a rozpozerané s popisom a obrázkami z Traktu</news>
         <assets>
             <icon>icon.png</icon>

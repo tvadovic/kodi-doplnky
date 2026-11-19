@@ -31,7 +31,7 @@ from urllib.parse import quote
 
 ASSET_TAGS = ("icon", "fanart", "banner", "clearlogo", "poster", "screenshot")
 XML_DECL = re.compile(r"^\s*<\?xml[^>]*\?>\s*")
-SOURCE_URL = "https://github.com/tvadovic/plugin.video.stvr"
+SOURCE_URL = "https://github.com/tvadovic/kodi-doplnky"
 
 
 def version_key(version):

@@ -18,7 +18,7 @@
         <platform>all</platform>
         <license>GPL-2.0-or-later</license>
         <website>https://www.stvr.sk/televizia/archiv</website>
-        <source>https://github.com/tvadovic/plugin.video.stvr</source>
+        <source>https://github.com/tvadovic/kodi-doplnky/tree/main/plugin.video.stvr</source>
         <news>0.2.0: živé vysielanie (7 kanálov STVR)
 0.1.2: nové hľadanie hneď zobrazí výsledky
 0.1.1: inštalácia a automatické aktualizácie cez Repozitár tvadovic

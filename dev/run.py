@@ -18,7 +18,7 @@ import sys
 import time
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path[:0] = [ROOT, os.path.join(ROOT, "dev", "stubs")]
+sys.path[:0] = [os.path.join(ROOT, "plugin.video.stvr"), os.path.join(ROOT, "dev", "stubs")]
 
 BASE_URL = "plugin://plugin.video.stvr/"
 
