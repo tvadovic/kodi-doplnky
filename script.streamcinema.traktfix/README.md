@@ -28,7 +28,9 @@ Oprava upravuje dva súbory Stream Cinema
 * popis, žánre, hodnotenie, dĺžka, trailer a obrázky (plagát, fanart, logo) sa berú
   z Traktu (`extended=full,images`); popis je preto po anglicky,
 * opravené sú aj chyby pôvodného kódu v pohľadoch **História** a **Rozpozerané**
-  (pád pri seriáloch, prázdna história filmov, duplicitné položky).
+  (pád pri seriáloch, prázdna história filmov, duplicitné položky),
+* späť je kontextové menu **Trakt.tv zoznamy**. Staršie verzie Stream Cinema (1.x) ho mali
+  ako „Trakt menu“, v 2.x pri prepise vypadlo.
 
 Funguje: vlastné zoznamy, watchlist, zoznamy a watchlisty priateľov a sledovaných,
 história filmov a seriálov, rozpozerané. Položky, ktoré Stream Cinema vo svojej
@@ -43,6 +45,11 @@ databáze nemá, sa vynechajú.
   * **iná verzia** (Stream Cinema sa aktualizoval) → **nič neprepíše**, iba upozorní.
     Novú verziu Stream Cinema teda nepoškodí. Kým nevyjde nová verzia opravy,
     Trakt v Stream Cinema nebude fungovať.
+* **Kontextové menu** (dlhé stlačenie OK) na filme alebo seriáli kdekoľvek v Stream Cinema
+  má položku **Trakt.tv zoznamy**:
+  * zobrazí watchlist a vlastné zoznamy, kde je položka už zaškrtnutá,
+  * zaškrtnutím ju pridáš, odškrtnutím odoberieš,
+  * *+ Nový zoznam…* vytvorí súkromný zoznam a pridá ju doň.
 * **Spustenie doplnku** otvorí priečinok Trakt.tv v Stream Cinema. Ten v hlavnom menu
   Stream Cinema chýba, preto je dobré pridať si doplnok do **Obľúbených**.
 
@@ -74,7 +81,9 @@ a `api.py.orig` späť (alebo Stream Cinema preinštaluj).
 1. Do `resources/patch/` daj opravené `Trakt.py` a `api.py` pre novú verziu
    (`.gitattributes` ich necháva bajt po bajte, test overí konce riadkov LF ako v originále).
 2. Do `ORIGINALS` v [`resources/lib/patcher.py`](resources/lib/patcher.py) pridaj
-   SHA-256 pôvodných súborov novej verzie.
+   SHA-256 pôvodných súborov novej verzie. Pri akejkoľvek zmene súboru v `resources/patch/`
+   tam pridaj aj odtlačok jeho predchádzajúcej opravenej verzie. Inak by nainštalovaná
+   oprava hlásila „iná verzia“ a neaktualizovala sa.
 3. Zvýš `version` a `news` v [`addon.xml`](addon.xml) a pushni do `main`. GitHub Action
    doplnok zabalí a zverejní v repozitári, Kodi si ho stiahne samo.
 

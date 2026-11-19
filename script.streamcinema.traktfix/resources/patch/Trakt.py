@@ -442,6 +442,96 @@ class TraktAPI(object):
         """Získa zoznamy používateľa"""
         return self.api.users.lists(user)
 
+    def _manager_trakt_id(self, args, typ):
+        """Trakt ID položky; ak chýba, dohľadá ho podľa IMDb/TMDb/TVDb."""
+        trid = args.get('trakt')
+        if trid and '{}'.format(trid).isdigit():
+            return int(trid)
+        for key in ('imdb', 'tmdb', 'tvdb'):
+            val = args.get(key)
+            if not val:
+                continue
+            res = self.http_client.get('/search/{}/{}'.format(key, val), {'type': typ[:-1]})
+            for r in res or []:
+                found = (r.get(r.get('type')) or {}).get('ids', {}).get('trakt')
+                if found:
+                    return int(found)
+        return None
+
+    def _manager_ids(self, endpoint, typ):
+        res = self.http_client.get(endpoint)
+        if res is None:
+            return None
+        return {(r.get(typ[:-1]) or {}).get('ids', {}).get('trakt') for r in res}
+
+    def manager(self, args):
+        """Kontextové menu: pridať/odobrať položku vo watchliste a vlastných zoznamoch."""
+        import xbmc
+        import xbmcgui
+
+        title = args.get('title') or 'Trakt.tv'
+        typ = 'movies' if args.get('content') == 'movie' else 'shows'
+        dialog = xbmcgui.Dialog()
+        if not self.is_enabled() or not get_setting('trakt.authorization'):
+            dialog.notification('Trakt.tv', 'Nie si prihlásený do Trakt.tv', xbmcgui.NOTIFICATION_WARNING)
+            return
+
+        xbmc.executebuiltin('ActivateWindow(busydialognocancel)')
+        try:
+            trid = self._manager_trakt_id(args, typ)
+            if trid is None:
+                dialog.notification(title, 'Položku sa na Trakt.tv nepodarilo nájsť',
+                                    xbmcgui.NOTIFICATION_WARNING)
+                return
+            # (názov, endpoint na pridanie, je tam položka?)
+            targets = []
+            ids = self._manager_ids('/users/me/watchlist/{}'.format(typ), typ)
+            if ids is None:
+                dialog.notification(title, 'Trakt.tv neodpovedá', xbmcgui.NOTIFICATION_ERROR)
+                return
+            targets.append(('Watchlist', '/sync/watchlist', trid in ids))
+            for lst in self.api.users.lists('me') or []:
+                lid = lst.get('ids', {}).get('trakt')
+                path = '/users/me/lists/{}/items'.format(lid)
+                ids = self._manager_ids('{}/{}'.format(path, typ), typ) or set()
+                targets.append((lst.get('name', '{}'.format(lid)), path, trid in ids))
+        finally:
+            xbmc.executebuiltin('Dialog.Close(busydialognocancel)')
+
+        labels = [t[0] for t in targets] + ['[I]+ Nový zoznam…[/I]']
+        before = [i for i, t in enumerate(targets) if t[2]]
+        sel = dialog.multiselect('Trakt.tv: {}'.format(title), labels, preselect=before)
+        if sel is None:
+            return
+
+        body = {typ: [{'ids': {'trakt': trid}}]}
+        add = [targets[i][1] for i in sel if i < len(targets) and i not in before]
+        remove = [targets[i][1] + '/remove' for i in before if i not in sel]
+        if len(targets) in sel:
+            name = dialog.input('Názov nového zoznamu')
+            if name:
+                new = self.http_client.post('/users/me/lists', {'name': name, 'privacy': 'private'})
+                lid = (new or {}).get('ids', {}).get('trakt')
+                if lid:
+                    add.append('/users/me/lists/{}/items'.format(lid))
+                else:
+                    dialog.notification(title, 'Zoznam sa nepodarilo vytvoriť', xbmcgui.NOTIFICATION_ERROR)
+
+        failed = 0
+        for n, endpoint in enumerate(add + remove):
+            if n:
+                time.sleep(1.1)  # Trakt povoľuje ~1 zápis za sekundu
+            if self.http_client.post(endpoint, body) is None:
+                failed += 1
+        debug('trakt.manager {} {}: +{} -{} chyby {}'.format(typ, trid, add, remove, failed))
+        if failed:
+            dialog.notification(title, 'Niektoré zmeny sa nepodarilo uložiť', xbmcgui.NOTIFICATION_ERROR)
+        elif add or remove:
+            dialog.notification(title, 'Trakt.tv: pridané {}, odobrané {}'.format(len(add), len(remove)),
+                                xbmcgui.NOTIFICATION_INFO, 3000)
+        if remove and not failed:
+            xbmc.executebuiltin('Container.Refresh')
+
     def get_list_items(self, id, user='me'):
         """Získa položky v zozname"""
         # full,images: metadata pre lokalne zostavene polozky v show_items
@@ -1161,6 +1251,10 @@ class TraktAPI(object):
         elif action == 'trakt.logout':
             set_setting('trakt.authorization', '')
             set_setting('trakt.user', '')
+        elif action == 'trakt.manager':
+            # RunPlugin z kontextového menu: žiadny adresár, endOfDirectory netreba
+            self.manager(params.args)
+            return
         elif action == 'trakt.list':
             u = 'me' if not params.args.get('user', None) else params.args.get('user')
 

@@ -3,21 +3,24 @@
 Nahradí Trakt.py a api.py v plugin.video.stream-cinema opravenými verziami
 z resources/patch/.
 
-Súbor sa prepíše len vtedy, keď je v presne známom pôvodnom stave (SHA-256
-v ORIGINALS). Ak ho aktualizácia Stream Cinema zmenila, nič sa neprepíše,
-aby sa nová verzia doplnku nepoškodila.
+Súbor sa prepíše len vtedy, keď je v presne známom stave (SHA-256 v ORIGINALS):
+pôvodný zo Stream Cinema alebo opravený staršou verziou tohto doplnku. Ak ho
+aktualizácia Stream Cinema zmenila, nič sa neprepíše, aby sa nepoškodil.
 
 Podpora novej verzie Stream Cinema: pridaj SHA-256 jej pôvodných súborov
 do ORIGINALS, oprav súbory v resources/patch/ a zvýš verziu v addon.xml.
+Pri zmene súboru v resources/patch/ pridaj do ORIGINALS odtlačok predchádzajúcej
+opravenej verzie, inak sa nainštalovaná oprava neaktualizuje.
 """
 import hashlib
 import os
 import shutil
 
-# súbor -> SHA-256 známych pôvodných verzií (plugin.video.stream-cinema)
+# súbor -> SHA-256 známych verzií, ktoré sa smú prepísať (plugin.video.stream-cinema)
 ORIGINALS = {
     'Trakt.py': {
         '13c4fe49965aadd2cc53aea54aff8b7c032de45ab528ec7a8484dd630fbc2c21',  # 2.6.10.3+k19
+        '9d79564ae6d6d05780f6cc71cd8fd94bc53006f384f7135df974e45602ecd38e',  # oprava 1.0.1
     },
     'api.py': {
         '83b820046747a1bc645cbd627c36dce4956bffc91baa259a20cc4ed2e4e97df1',  # 2.6.10.3+k19
