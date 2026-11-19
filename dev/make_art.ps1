@@ -135,4 +135,24 @@ $g.DrawString("REPO", $font, (New-Object System.Drawing.SolidBrush($white)), (Ne
 $g.Dispose()
 $bmp.Save((Join-Path $root "repository.tvadovic\icon.png"), [System.Drawing.Imaging.ImageFormat]::Png)
 $bmp.Dispose()
-Write-Output "icon.png, fanart.jpg a repository.tvadovic\icon.png vygenerované v $root"
+# ---------------- script.streamcinema.traktfix/icon.png (televízor + šípky synchronizácie)
+$bmp = New-Object System.Drawing.Bitmap($size, $size)
+$g = [System.Drawing.Graphics]::FromImage($bmp)
+Set-Quality $g
+$g.Clear([System.Drawing.Color]::Transparent)
+$bg = New-Object System.Drawing.Drawing2D.LinearGradientBrush(
+    (New-Object System.Drawing.Point(0, 0)), (New-Object System.Drawing.Point($size, $size)), $navy, $navyDark)
+$g.FillPath($bg, (New-RoundRect 0 0 $size $size 96))
+Draw-TV $g 256 70 300 255
+# kruh zo šípok vpravo hore = synchronizácia so zoznamami
+$spen = New-Object System.Drawing.Pen($white, [float]14)
+$spen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+$spen.EndCap = [System.Drawing.Drawing2D.LineCap]::ArrowAnchor
+$g.FillEllipse((New-Object System.Drawing.SolidBrush($coral)), 352, 36, 124, 124)
+$g.DrawArc($spen, 380, 64, 68, 68, 200, 130)
+$g.DrawArc($spen, 380, 64, 68, 68, 20, 130)
+$g.DrawString("TRAKT", $font, (New-Object System.Drawing.SolidBrush($white)), (New-Object System.Drawing.RectangleF(0, 370, $size, 90)), $fmt)
+$g.Dispose()
+$bmp.Save((Join-Path $root "script.streamcinema.traktfix\icon.png"), [System.Drawing.Imaging.ImageFormat]::Png)
+$bmp.Dispose()
+Write-Output "icon.png, fanart.jpg, repository.tvadovic\icon.png a script.streamcinema.traktfix\icon.png vygenerované v $root"
