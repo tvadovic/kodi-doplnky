@@ -1,0 +1,76 @@
+name: Zverejnenie
+
+# Všetky doplnky sa zverejnia v Kodi repozitári (GitHub Pages, vetva gh-pages)
+# po pushi do main. Rovnaká verzia sa neprepisuje, takže nové vydanie doplnku =
+# zvýšiť version v jeho addon.xml. Každá novo zverejnená verzia dostane aj
+# GitHub Release s tagom {addon_id}-{verzia}.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "plugin.video.stvr/**"
+      - "repository.tvadovic/**"
+      - "script.streamcinema.traktfix/**"
+      - "dev/build_*.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+# dva behy naraz by si prepisovali vetvu gh-pages
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pytest
+      - run: python -m pytest -q
+      - name: Zabaliť doplnky
+        run: python dev/build_zip.py --all
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+      - name: Nové verzie (ešte nie sú v repozitári)
+        run: |
+          : > new-zips.txt
+          for zip in dist/*.zip; do
+            name=$(basename "$zip" .zip)
+            id=${name%-*}
+            [ -f "gh-pages/$id/$name.zip" ] || echo "$zip" >> new-zips.txt
+          done
+          cat new-zips.txt
+      - name: Aktualizovať Kodi repozitár
+        run: python dev/build_repo.py dist/*.zip --out gh-pages
+      - name: Pushnúť gh-pages
+        working-directory: gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Repozitár bez zmien"; exit 0; fi
+          git commit -m "Kodi repozitár: ${GITHUB_SHA::7}"
+          git push
+      - name: GitHub Release pre nové verzie
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          while read -r zip; do
+            name=$(basename "$zip" .zip)
+            gh release view "$name" >/dev/null 2>&1 && continue
+            gh release create "$name" "$zip" --target "$GITHUB_SHA" --title "$name" --generate-notes
+          done < new-zips.txt
+      - name: Spustiť build GitHub Pages
+        # push cez GITHUB_TOKEN build zvyčajne spustí sám; toto je poistka
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

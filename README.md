@@ -1,115 +1,65 @@
-# STVR archív (neoficiálny) – doplnok pre Kodi
+# Kodi doplnky – Magrathea Repository
 
-Doplnok `plugin.video.stvr` prehráva [archív STVR](https://www.stvr.sk/televizia/archiv)
-(Jednotka, Dvojka, :24, Šport) a jej živé vysielanie priamo v Kodi, teda aj na televízore
-(Chromecast s Google TV, Android TV, PC…).
+Neoficiálne doplnky pre [Kodi](https://kodi.tv) a ich repozitár **Magrathea Repository**.
+Fungujú na PC aj na televízore (Chromecast s Google TV, Android TV…). Z repozitára
+ich Kodi aktualizuje samo.
 
-> Doplnok nie je oficiálny a nie je nijako spojený so STVR. Používa rovnaké verejné
-> rozhranie ako web stvr.sk. Obsah je dostupný len zo Slovenska a doplnok geoblokáciu
-> neobchádza. Videá sa nesťahujú, iba prehrávajú.
+| Doplnok | Čo robí |
+|---|---|
+| [**STVR archív (neoficiálny)**](plugin.video.stvr/README.md)<br>`plugin.video.stvr` | Archív a živé vysielanie STVR (Jednotka, Dvojka, :24, Šport…) |
+| [**Trakt.tv (Stream Cinema)**](script.streamcinema.traktfix/README.md)<br>`script.streamcinema.traktfix` | Neoficiálna oprava Trakt.tv v doplnku Stream Cinema CZ a SK: zoznamy, watchlist, história a kontextové menu na pridávanie do zoznamov |
+| [**Magrathea Repository**](repository.tvadovic/addon.xml)<br>`repository.tvadovic` | Repozitár, z ktorého sa doplnky inštalujú a aktualizujú |
 
-## Čo vie
-
-* **Naživo**: 7 kanálov (Jednotka, Dvojka, :24, Šport, Live O, Live STVR, NR SR)
-  s práve vysielaným programom, až do 1080p
-* **Žánre** s podžánrami (Filmy, Seriály, Zábava → Varenie, …)
-* **A–Z**, **Kanály**, **Pre deti**, **Európska tvorba**: rovnaké filtre ako na webe
-* **Kalendár**: dni vysielania, pri každom dni program s prehrateľnými epizódami
-* **Hľadať** s históriou hľadaných výrazov
-* **Pozrieť neskôr**: relácie aj epizódy, pridávajú sa cez kontextové menu
-  (dlhé stlačenie OK / pravé tlačidlo myši)
-* Epizódy so dátumom vysielania, popisom, obrázkom, dĺžkou a dátumom „dostupné do“
-* Slovenské titulky (ak ich epizóda má)
-* Kodi si pamätá pozíciu prehrávania a pozreté epizódy
+> Doplnky nie sú oficiálne a nie sú spojené so STVR, autormi Stream Cinema ani s Trakt.tv.
 
 ## Inštalácia
 
-Doplnok potrebuje **Kodi 20 alebo novšie** (testované na Kodi 21 Omega).
-Najjednoduchšie je nainštalovať ho z repozitára, Kodi ho potom **aktualizuje samo**.
+Doplnky potrebujú **Kodi 20 alebo novšie** (testované na Kodi 21 Omega).
 Postup je rovnaký na PC aj na TV.
 
 1. **Povoliť neznáme zdroje:** *Nastavenia → Systém → Doplnky → Neznáme zdroje* (zapnúť, potvrdiť).
 2. **Pridať zdroj:** *Nastavenia → Správca súborov → Pridať zdroj → &lt;Žiadne&gt;*, zadajte URL
 
    ```
-   https://tvadovic.github.io/plugin.video.stvr/
+   https://tvadovic.github.io/kodi-doplnky/
    ```
 
-   a ako názov napr. `tvadovic` → *OK*.
+   a ako názov napr. `magrathea` → *OK*.
 3. **Nainštalovať repozitár:** *Doplnky → ikona otvorenej krabice (Prehliadač doplnkov) →
-   Inštalovať zo súboru ZIP → tvadovic → `repository.tvadovic-X.Y.Z.zip`*.
+   Inštalovať zo súboru ZIP → magrathea → `repository.tvadovic-X.Y.Z.zip`*.
 4. **Nainštalovať doplnok:** v tom istom menu *Inštalovať z repozitára → Magrathea Repository →
-   Video doplnky → STVR archív (neoficiálny) → Inštalovať*.
+   Video doplnky →* vybraný doplnok *→ Inštalovať*.
 
-Doplnok nájdete v *Doplnky → Video doplnky → STVR archív (neoficiálny)*.
+Na Chromecaste s Google TV alebo Android TV nainštalujte Kodi z Google Play a postupujte rovnako.
+Nič netreba sťahovať ani kopírovať, jediná práca navyše je napísať URL zdroja ovládačom.
 
-### Chromecast s Google TV / Android TV
-Kodi nainštalujte z Google Play a postupujte podľa krokov vyššie. Nič netreba sťahovať
-ani kopírovať, jediná práca navyše je napísať URL zdroja ovládačom.
+**Ručne zo ZIP** (bez automatických aktualizácií): ZIP každej verzie je aj v
+[Releases](https://github.com/tvadovic/kodi-doplnky/releases).
 
-### Ručne zo ZIP (bez automatických aktualizácií)
-`plugin.video.stvr-X.Y.Z.zip` je aj v
-[Releases](https://github.com/tvadovic/plugin.video.stvr/releases/latest).
-Nainštalujete ho cez *Inštalovať zo súboru ZIP*, novšie verzie si však treba sťahovať ručne.
+## Štruktúra a vývoj
 
-### Ďalšie doplnky v repozitári
-* **Trakt.tv (Stream Cinema)**: neoficiálna oprava prepojenia Stream Cinema CZ a SK
-  s Trakt.tv (zoznamy, watchlist, história). Popis a inštalácia:
-  [`script.streamcinema.traktfix/`](script.streamcinema.traktfix/README.md).
+Každý doplnok je priečinok s `addon.xml` v koreni repozitára. Spoločné sú:
 
-## Nastavenia
-
-| Nastavenie | Význam |
-|---|---|
-| Maximálna kvalita | Najlepšia / 1080p / 720p / 480p / 360p. Pri pomalej sieti zvoľte nižšiu. |
-| Načítať titulky | Pripojí slovenské titulky (zapnúť ich treba v prehrávači). |
-| Použiť InputStream Adaptive | Prehrávanie cez doplnok *InputStream Adaptive* (HLS alebo DASH, adaptívna kvalita). Voliteľné, bez neho to funguje tiež. |
-| Počet epizód na stranu | Koľko epizód sa zobrazí naraz (položka *Staršie…* načíta ďalšie). |
-| Zobrazovať dĺžku epizód | Dĺžka nie je v zozname epizód, doplnok ju zisťuje zvlášť (raz, potom sa pamätá). Vypnutím sa zoznamy načítajú rýchlejšie. |
-| Platnosť medzipamäte | Ako dlho sa pamätajú zoznamy (stream sa nepamätá nikdy). |
-
-## Vývoj
-
-Doplnok používa len štandardnú knižnicu Pythonu 3. Všetko, čo závisí od webu STVR,
-je v [`resources/lib/api.py`](resources/lib/api.py). Popis rozhrania je v
-[`docs/API.md`](docs/API.md).
-
-```bash
-pip install pytest
-python -m pytest                                   # offline testy (fixtures)
-STVR_LIVE=1 python -m pytest tests/test_live.py    # proti skutočnému API (zo SK IP)
-```
-
-Router sa dá spustiť bez Kodi (stuby `xbmc*` sú v `dev/stubs/`):
-
-```bash
-python dev/run.py                                            # hlavné menu
-python dev/run.py "plugin://plugin.video.stvr/?action=genres"
-python dev/run.py "?action=show&id=14126&title=Duel" --details
-python dev/run.py "?action=play&id=630571" --set max_quality=2
-python dev/run.py "?action=search_new" --input duel
-```
-
-Ďalšie nástroje:
-* `python dev/build_zip.py`: zabalí `dist/plugin.video.stvr-<verzia>.zip`
-  (`--addon repository.tvadovic` zabalí repozitár doplnkov)
-* `python dev/build_repo.py dist/*.zip --out <checkout gh-pages>`: poskladá Kodi repozitár
+* `tests/`: testy všetkých doplnkov (`pip install pytest && python -m pytest`)
+* `dev/build_zip.py`: zabalí doplnok do `dist/{id}-{verzia}.zip`
+  (`--addon <priečinok>`, `--all` = všetky; `docs/`, `tests/` a `__pycache__` sa nebalia)
+* `dev/build_repo.py dist/*.zip --out <checkout gh-pages>`: poskladá Kodi repozitár
   (`addons.xml`, `.md5`, ZIP-y, ikony a `index.html` pre Kodi)
-* `python dev/gen_strings.py`: vygeneruje `strings.po` (sk/en) z jedného zoznamu
-* `dev/make_art.ps1`: vygeneruje `icon.png`, `fanart.jpg`, ikonu repozitára a ikonu opravy Trakt
+* `dev/make_art.ps1`: vygeneruje ikony a fanart všetkých doplnkov
+* `dev/run.py`, `dev/stubs/`, `dev/gen_strings.py`: nástroje pre STVR archív
+  (pozri jeho [README](plugin.video.stvr/README.md#vývoj))
 
 ### Vydanie novej verzie
-1. Zvýšte `version` (a `news`) v `addon.xml`.
-2. `git tag v0.2.0 && git push --tags`
-3. GitHub Action spustí testy, zabalí ZIP, pridá ho do Release a aktualizuje Kodi
-   repozitár na vetve `gh-pages` (GitHub Pages). Kodi si novú verziu stiahne samo.
-   Ak tag nesedí s verziou v `addon.xml`, build zlyhá.
+1. Zvýšte `version` (a `news`) v `addon.xml` doplnku.
+2. Zlúčte zmenu do `main`.
+3. Workflow *Zverejnenie* spustí testy, zabalí všetky doplnky, nové verzie pridá do Kodi
+   repozitára na vetve `gh-pages` (GitHub Pages) a vytvorí pre ne GitHub Release
+   s tagom `{id}-{verzia}`. Kodi si novú verziu stiahne samo.
 
-Repozitár doplnkov **Magrathea Repository** je v [`repository.tvadovic/`](repository.tvadovic/addon.xml).
-On aj [`script.streamcinema.traktfix/`](script.streamcinema.traktfix/) sa zverejnia po pushi do `main`
-(workflow *Repozitár*). Pri zmene zvýšte ich `version`, inak zostane zverejnený starý ZIP
-(rovnaká verzia sa neprepisuje).
+Zverejnená verzia sa neprepisuje. Zmena bez zvýšenia `version` sa do Kodi nedostane.
 
 ## Licencia
 
-[GPL-2.0-or-later](LICENSE.txt)
+* STVR archív, repozitár a nástroje: [GPL-2.0-or-later](LICENSE.txt)
+* Trakt.tv (Stream Cinema): [GPL-3.0](script.streamcinema.traktfix/LICENSE.txt),
+  rovnako ako Stream Cinema, z ktorého pochádzajú upravené súbory

@@ -4,7 +4,7 @@ import os
 import re
 import xml.etree.ElementTree as ET
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "plugin.video.stvr"))
 SETTINGS = {}   # prepísané nastavenia (dev/run.py --set, testy)
 
 
