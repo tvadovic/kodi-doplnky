@@ -120,7 +120,65 @@ def test_addon_xml_and_zip(tmp_path):
         for name in patcher.ORIGINALS:
             member = "script.streamcinema.traktfix/resources/patch/" + name
             assert zf.read(member) == _read(PATCH_DIR, name)
-    for rel in ("addon.xml", "default.py", "service.py", "icon.png", "LICENSE.txt", "README.md",
+    for rel in ("addon.xml", "default.py", "service.py", "context.py", "icon.png", "LICENSE.txt", "README.md",
                 "resources/lib/patcher.py", "resources/lib/kodi.py"):
         assert "script.streamcinema.traktfix/" + rel in names
     assert not any("__pycache__" in n or n.endswith(".pyc") for n in names)
+
+
+class _Tag(object):
+    def __init__(self, mediatype, title, uids):
+        self._m, self._t, self._u = mediatype, title, uids
+
+    def getMediaType(self):
+        return self._m
+
+    def getTitle(self):
+        return self._t
+
+    def getUniqueID(self, key):
+        return self._u.get(key, "")
+
+
+class _ListItem(object):
+    def __init__(self, tag):
+        self._tag = tag
+
+    def getVideoInfoTag(self):
+        return self._tag
+
+    def getLabel(self):
+        return "label"
+
+
+def _sc_params(url):
+    """Dekódovanie parametrov ako kodiutils.params v Stream Cinema."""
+    from urllib.parse import parse_qs, urlparse
+    qs = parse_qs(urlparse(url).query)
+    return {k: bytes.fromhex(v[0]).decode("utf-8") for k, v in qs.items()}
+
+
+@pytest.mark.parametrize("mediatype,content", [("movie", "movie"), ("tvshow", "tvshow")])
+def test_context_menu_runs_stream_cinema_manager(monkeypatch, mediatype, content):
+    import sys
+    import xbmc
+    context = _load(os.path.join(ADDON_DIR, "context.py"), "traktfix_context")
+    item = _ListItem(_Tag(mediatype, "Duna: Časť druhá", {"trakt": "4810", "imdb": "tt15239678"}))
+    monkeypatch.setattr(sys, "listitem", item, raising=False)
+    monkeypatch.setattr(xbmc, "BUILTINS", [])
+    context.main()
+    (cmd,) = xbmc.BUILTINS
+    assert cmd.startswith("RunPlugin(plugin://plugin.video.stream-cinema/?") and cmd.endswith(")")
+    # 4810 je platný hex; bez kódovania by ho Stream Cinema „dekódoval“ na nezmysel
+    assert _sc_params(cmd[len("RunPlugin("):-1]) == {
+        "action": "trakt.manager", "content": content, "title": "Duna: Časť druhá",
+        "trakt": "4810", "imdb": "tt15239678"}
+
+
+def test_context_menu_registered():
+    root = ET.parse(os.path.join(ADDON_DIR, "addon.xml")).getroot()
+    item = root.find("extension[@point='kodi.context.item']/menu/item")
+    assert item.get("library") == "context.py"
+    assert "plugin.video.stream-cinema" in item.find("visible").text
+    # manager v opravenom Trakt.py, na ktorý kontextové menu volá
+    assert b"action == 'trakt.manager'" in _read(PATCH_DIR, "Trakt.py")
