@@ -63,7 +63,7 @@ def test_build_zip_plugin_and_repository(zips):
 
 def test_repository_addon_xml_points_to_pages():
     root = ET.parse(os.path.join(REPO_DIR, "addon.xml")).getroot()
-    assert (root.get("id"), root.get("version")) == ("repository.tvadovic", "1.0.0")
+    assert (root.get("id"), root.get("version")) == ("repository.tvadovic", "1.0.1")
     d = root.find("extension[@point='xbmc.addon.repository']/dir")
     assert d.find("info").text == PAGES_URL + "addons.xml"
     assert d.find("info").get("compressed") == "false"
@@ -76,13 +76,13 @@ def test_build_repo_layout(tmp_path, zips):
     out = str(tmp_path / "pages")
     latest = build_repo.build_repo(zips, out)
     pid, pver = build_zip.addon_info(ROOT)
-    assert latest == {pid: pver, "repository.tvadovic": "1.0.0"}
+    assert latest == {pid: pver, "repository.tvadovic": "1.0.1"}
 
     for addon_id, version in latest.items():
         assert os.path.isfile(os.path.join(out, addon_id, "%s-%s.zip" % (addon_id, version)))
         assert os.path.isfile(os.path.join(out, addon_id, "icon.png"))
     assert os.path.isfile(os.path.join(out, pid, "fanart.jpg"))
-    assert os.path.isfile(os.path.join(out, "repository.tvadovic-1.0.0.zip"))
+    assert os.path.isfile(os.path.join(out, "repository.tvadovic-1.0.1.zip"))
     assert os.path.isfile(os.path.join(out, ".nojekyll"))
 
     with open(os.path.join(out, "addons.xml"), "rb") as f:
@@ -107,10 +107,10 @@ def test_index_html_links_match_text(tmp_path, zips):
 
     root_links = kodi_links("")
     for name in ("addons.xml", "addons.xml.md5", "repository.tvadovic/",
-                 "plugin.video.stvr/", "repository.tvadovic-1.0.0.zip"):
+                 "plugin.video.stvr/", "repository.tvadovic-1.0.1.zip"):
         assert name in root_links
     assert "index.html" not in root_links
-    assert "repository.tvadovic-1.0.0.zip" in kodi_links("repository.tvadovic")
+    assert "repository.tvadovic-1.0.1.zip" in kodi_links("repository.tvadovic")
 
 
 def test_build_repo_keeps_old_zips_and_picks_newest(tmp_path):

@@ -1,0 +1,55 @@
+name: Repozitár
+
+# Doplnky okrem plugin.video.stvr (ten sa vydáva tagom v release.yml) sa zverejnia
+# v Kodi repozitári po pushi do main. Rovnaká verzia sa neprepisuje, takže nové
+# vydanie = zvýšiť version v addon.xml.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "repository.tvadovic/**"
+      - "script.streamcinema.traktfix/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pytest
+      - run: python -m pytest -q
+      - name: Zabaliť doplnky
+        id: build
+        run: |
+          echo "zips=$(python dev/build_zip.py --addon repository.tvadovic) $(python dev/build_zip.py --addon script.streamcinema.traktfix)" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+      - name: Aktualizovať Kodi repozitár
+        run: python dev/build_repo.py ${{ steps.build.outputs.zips }} --out gh-pages
+      - name: Pushnúť gh-pages
+        working-directory: gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Repozitár bez zmien"; exit 0; fi
+          git commit -m "Kodi repozitár: ${GITHUB_SHA::7}"
+          git push
+      - name: Spustiť build GitHub Pages
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

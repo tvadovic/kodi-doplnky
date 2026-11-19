@@ -38,7 +38,7 @@ Postup je rovnaký na PC aj na TV.
    a ako názov napr. `tvadovic` → *OK*.
 3. **Nainštalovať repozitár:** *Doplnky → ikona otvorenej krabice (Prehliadač doplnkov) →
    Inštalovať zo súboru ZIP → tvadovic → `repository.tvadovic-X.Y.Z.zip`*.
-4. **Nainštalovať doplnok:** v tom istom menu *Inštalovať z repozitára → Repozitár tvadovic →
+4. **Nainštalovať doplnok:** v tom istom menu *Inštalovať z repozitára → Magrathea Repository →
    Video doplnky → STVR archív (neoficiálny) → Inštalovať*.
 
 Doplnok nájdete v *Doplnky → Video doplnky → STVR archív (neoficiálny)*.
@@ -51,6 +51,11 @@ ani kopírovať, jediná práca navyše je napísať URL zdroja ovládačom.
 `plugin.video.stvr-X.Y.Z.zip` je aj v
 [Releases](https://github.com/tvadovic/plugin.video.stvr/releases/latest).
 Nainštalujete ho cez *Inštalovať zo súboru ZIP*, novšie verzie si však treba sťahovať ručne.
+
+### Ďalšie doplnky v repozitári
+* **Trakt.tv (Stream Cinema)**: neoficiálna oprava prepojenia Stream Cinema CZ a SK
+  s Trakt.tv (zoznamy, watchlist, história). Popis a inštalácia:
+  [`script.streamcinema.traktfix/`](script.streamcinema.traktfix/README.md).
 
 ## Nastavenia
 
@@ -91,7 +96,7 @@ python dev/run.py "?action=search_new" --input duel
 * `python dev/build_repo.py dist/*.zip --out <checkout gh-pages>`: poskladá Kodi repozitár
   (`addons.xml`, `.md5`, ZIP-y, ikony a `index.html` pre Kodi)
 * `python dev/gen_strings.py`: vygeneruje `strings.po` (sk/en) z jedného zoznamu
-* `dev/make_art.ps1`: vygeneruje `icon.png`, `fanart.jpg` a ikonu repozitára
+* `dev/make_art.ps1`: vygeneruje `icon.png`, `fanart.jpg`, ikonu repozitára a ikonu opravy Trakt
 
 ### Vydanie novej verzie
 1. Zvýšte `version` (a `news`) v `addon.xml`.
@@ -100,8 +105,10 @@ python dev/run.py "?action=search_new" --input duel
    repozitár na vetve `gh-pages` (GitHub Pages). Kodi si novú verziu stiahne samo.
    Ak tag nesedí s verziou v `addon.xml`, build zlyhá.
 
-Repozitár doplnkov je v [`repository.tvadovic/`](repository.tvadovic/addon.xml). Ak ho zmeníte,
-zvýšte jeho `version`, inak zostane zverejnený starý ZIP (rovnaká verzia sa neprepisuje).
+Repozitár doplnkov **Magrathea Repository** je v [`repository.tvadovic/`](repository.tvadovic/addon.xml).
+On aj [`script.streamcinema.traktfix/`](script.streamcinema.traktfix/) sa zverejnia po pushi do `main`
+(workflow *Repozitár*). Pri zmene zvýšte ich `version`, inak zostane zverejnený starý ZIP
+(rovnaká verzia sa neprepisuje).
 
 ## Licencia
 

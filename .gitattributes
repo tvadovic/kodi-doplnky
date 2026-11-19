@@ -2,3 +2,6 @@
 *.png binary
 *.jpg binary
 *.ps1 text eol=crlf
+
+# opravené súbory Stream Cinema sa musia zachovať bajt po bajte (git ich nesmie meniť)
+script.streamcinema.traktfix/resources/patch/*.py -text
